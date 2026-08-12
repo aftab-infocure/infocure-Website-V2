@@ -1,0 +1,40 @@
+{
+  "summary": "Frontend re-verification of fixes 1-5 and regressions on infocure.in marketing site. All fixes PASS except FIX 2 for the homepage: hero-bg-video still present on '/'. DT page hero is correctly video-free and on-theme black. Team Augmentation successfully collapsed to a single page with hash-anchor navigation; old subpaths render NotFound. Services mega-menu no longer contains Salesforce/Cyber Security and no 'Flagship' eyebrow label. Header background and text are consistent across '/', '/industries', '/services/team-augmentation', '/services/digital-transformation', '/insights' and unchanged after scrolling ~1200px on /industries. Insights and Blog pages render. No console errors observed.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "Home hero (src/pages/Home.jsx)",
+        "issue": "Homepage '/' still contains a background <video data-testid=\"hero-bg-video\"> in the hero section (src=/media/hero-bg.webm, top=0, full-viewport). Review request FIX 2 explicitly requires: 'Homepage / must also have no video hero.' Two additional decorative <video> elements exist further down the page (data-testid=method-bg-video and cta-band-video). If the requirement is strictly 'no <video> element on Home', those must also be removed.",
+        "selector": "[data-testid=\"hero-bg-video\"], [data-testid=\"method-bg-video\"], [data-testid=\"cta-band-video\"]",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/test_reports/iteration_2.json",
+    "/app/test_reports/header_industries_top.png",
+    "/app/test_reports/header_industries_scroll.png"
+  ],
+  "action_items": [
+    "Remove the hero background <video data-testid=\"hero-bg-video\"> from src/pages/Home.jsx (and likely the method-bg-video and cta-band-video decorative videos) to satisfy FIX 2 requirement that Homepage '/' must have no video hero. Replace with a static/on-theme image or CSS gradient consistent with the new dark DT hero treatment."
+  ],
+  "critical_code_review_comments": [
+    "Header.jsx uses constant 'bg-ink/95 backdrop-blur-2xl' with no scroll listener — correctly implements uniform header (FIX 5).",
+    "TeamAugmentation.jsx correctly implements hash-scroll via useLocation() with a 320ms setTimeout to defer scrollIntoView after lazy content mount — works reliably (verified scrollY=1941 for #by-geography).",
+    "App.js removed TeamAugBy import + 3 by-* routes; catch-all '*' NotFound correctly handles the removed subpaths.",
+    "site.js NAV_SERVICES no longer contains Salesforce Consulting or Cyber Security; Build & Cloud has only SD, AI, RPA — matches FIX 4.",
+    "Footer.jsx Services column no longer lists Salesforce — matches FIX 4.",
+    "DigitalTransformation.jsx DarkHero has no <video>, uses bg-brand-ink (rgb(26,31,43)) matching site theme — matches FIX 2 for DT page.",
+    "Home.jsx still ships /media/hero-bg.webm as hero video — does not match FIX 2 for homepage."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "not tested (frontend-only round)", "frontend": "97% (32/33 verifications passed)"},
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "All fixes (1, 3, 3b, 4, 5) plus insights/blog regressions verified passing on public URL https://dt-nav-update.preview.emergentagent.com. Only outstanding item: homepage '/' still has hero-bg-video (and two other decorative videos deeper on the page). DT page video removal is fully done. Team Augmentation single-page with hash scroll works (scrollY=1941 after navigating to #by-geography). Header bg is constant rgba(26,31,43,0.95) across all 5 tested pages and unchanged after scrolling on /industries. No console errors during the run. Re-test after Home.jsx video removal; confirm 0 <video> tags on '/'.",
+  "rca of the issue": "Root cause: Home.jsx was not touched in this fix round. The FIX 2 update focused on DigitalTransformation.jsx (replaced hero video with DarkHero component using bg-brand-ink). Home.jsx retained its original video-backed hero (<video data-testid=\"hero-bg-video\" src=\"/media/hero-bg.webm\">) plus two decorative section videos (method-bg-video, cta-band-video). Reproduction: navigate to https://dt-nav-update.preview.emergentagent.com/ , inspect DOM — document.querySelectorAll('video').length === 3. Mitigation: In /app/frontend/src/pages/Home.jsx, remove the <video> element from the hero section and any decorative <video> elements, replacing with a static on-theme background (image + gradient overlay or pure CSS treatment) mirroring the DT DarkHero pattern."
+}
