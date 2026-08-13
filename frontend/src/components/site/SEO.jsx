@@ -5,7 +5,9 @@ const OG_IMAGE = `${SITE.domain}/images/og-image.jpg`;
 
 export default function SEO({ title, description, path = "/", jsonLd }) {
   const url = `${SITE.domain}${path}`;
-  const fullTitle = title ? `${title} | infocure technologies` : "infocure technologies — Enterprise Digital Transformation Consulting";
+  const fullTitle = title
+    ? /infocure/i.test(title) ? title : `${title} | infocure technologies`
+    : "infocure technologies — Enterprise Digital Transformation Consulting";
   const desc = description || "SAP, Oracle, Salesforce, AI and enterprise products — engineered end to end for global enterprises since 2014.";
   return (
     <Helmet>

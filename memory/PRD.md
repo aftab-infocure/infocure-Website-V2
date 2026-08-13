@@ -36,6 +36,8 @@ HOME · SERVICES (Digital Transformation, SAP Consulting, Oracle Consulting, Sal
   - Cleanup: removed duplicate AdminInsights page (/admin/insights redirects to /adminia) and unused constants/testIds; no console.logs; no console errors.
   - Responsive: zero horizontal overflow on 8 key pages × 7 widths (320–1920).
 
+- 2026-08-13: DT PAGE EXECUTIVE CONTENT PASS — /services/digital-transformation rewritten with executive-level messaging (design unchanged): new hero headline/subhead/CTAs, Business Challenges (10), Business-First Approach (10 steps), 10 Capability cards, 10 Business Outcomes, 8 Industry Expertise cards, 10 Technology Ecosystem cards, 8-stage horizontal Methodology timeline, Why Infocure (8 highlights), 9 FAQs, new final CTA, SEO meta title/description per spec. FlagshipPage renderer now supports per-page CTA labels and a "timeline" section kind; SEO.jsx no longer double-brands titles.
+
 ## Backlog / Next
 - P1: Server-side 301 for /services/team-augmentation if SEO demands it (currently client-side redirect).
 - P2: Admin-editable flagship page content.

@@ -65,6 +65,25 @@ function SectionBlock({ section, index }) {
           </ol>
         ) : null}
 
+        {section.kind === "timeline" ? (
+          <ol className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-8 xl:gap-5">
+            {section.items.map((s, i) => (
+              <li key={s.title}>
+                <Reveal delay={0.05 * i}>
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-red font-mono text-[13px] font-semibold text-white">
+                      {i + 1}
+                    </span>
+                    {i < section.items.length - 1 ? <span className="hidden h-px flex-1 bg-brand-mist xl:block" /> : null}
+                  </div>
+                  <div className="mt-4 font-display text-[16px] font-semibold text-brand-ink">{s.title}</div>
+                  <p className="mt-2 font-body text-[13.5px] leading-relaxed text-brand-slate">{s.desc}</p>
+                </Reveal>
+              </li>
+            ))}
+          </ol>
+        ) : null}
+
         {section.kind === "cards" || section.kind === "dark" ? (
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
             {section.items.map((f, i) => (
@@ -78,7 +97,9 @@ function SectionBlock({ section, index }) {
                   )}
                 >
                   <h3 className={cx("font-display text-[19px] font-semibold", dark ? "text-white" : "text-brand-ink")}>{f.title}</h3>
-                  <p className={cx("mt-3 font-body text-[14.5px] leading-relaxed", dark ? "text-white/65" : "text-brand-slate")}>{f.desc}</p>
+                  {f.desc ? (
+                    <p className={cx("mt-3 font-body text-[14.5px] leading-relaxed", dark ? "text-white/65" : "text-brand-slate")}>{f.desc}</p>
+                  ) : null}
                 </div>
               </Reveal>
             ))}
@@ -111,8 +132,8 @@ export default function FlagshipPage({ config }) {
         eyebrow={config.hero.eyebrow}
         headline={config.hero.headline}
         subhead={config.hero.subhead}
-        primaryCta={{ label: "Talk to an Expert", href: "/contact" }}
-        secondaryCta={{ label: "Request a Proposal", href: "/contact" }}
+        primaryCta={{ label: config.hero.primaryLabel || "Talk to an Expert", href: "/contact" }}
+        secondaryCta={{ label: config.hero.secondaryLabel || "Request a Proposal", href: "/contact" }}
         trustLine={config.hero.trustLine}
         image={config.hero.image}
         video={config.hero.video}
@@ -139,8 +160,8 @@ export default function FlagshipPage({ config }) {
         eyebrow="Let's begin"
         title={config.cta.title}
         subtitle={config.cta.subtitle}
-        primaryCta={{ label: "Talk to an Expert", href: "/contact" }}
-        secondaryCta={{ label: "Request a Proposal", href: "/contact" }}
+        primaryCta={{ label: config.cta.primaryLabel || "Talk to an Expert", href: "/contact" }}
+        secondaryCta={{ label: config.cta.secondaryLabel || "Request a Proposal", href: "/contact" }}
       />
     </div>
   );
