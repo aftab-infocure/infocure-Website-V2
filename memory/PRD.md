@@ -60,6 +60,8 @@ HOME · SERVICES (Digital Transformation, SAP Consulting, Oracle Consulting, Sal
 
 - 2026-08-13: EXECUTIVE CONTENT PASS (EXIM + E-INVOICING) — /products/exim rewritten per spec (hero, 10 challenge chips, 8 capability cards, 8-stage export + 7-stage import lifecycle timelines, documentation/compliance/logistics cards, 9 integration cards with SAP positioning + DGFT/e-BRC, 9 management cards, 10 benefits, 4 industry cards, 8 dark Why cards, 8-stage implementation, 7 cross-links, 10 FAQs, spec CTAs/SEO). /products/e-invoicing rewritten as E-Invoicing Cockpit (hero, 10 challenge chips, 8 capability cards, 8-stage e-invoice lifecycle timeline, 8 validation cards, 8 monitoring cards, 5-stage exception workflow, 9 integration cards (SAP/Oracle/Tally documented), 9 finance-visibility cards, 10 benefits, 7 industry cards, 8 dark Why cards, 8-stage implementation, 6 cross-links, 10 FAQs, spec CTAs/SEO). URLs preserved.
 
+- 2026-08-13: PRODUCT HERO REFINEMENT — removed the generic cta-bg looping video from ALL 9 product heroes (no video element in DOM at all). Heroes now use the approved static treatment: dark charcoal bg + subtle architectural grid + red brand glow + a very subtle per-product accent glow (product.accent color). Product-specific visuals, layout, typography, CTAs unchanged. Homepage & Digital Transformation videos untouched (verified: home 3 videos, DT 1 video, product pages 0).
+
 ## Backlog / Next
 - P1: Server-side 301 for /services/team-augmentation if SEO demands it (currently client-side redirect).
 - P2: Admin-editable flagship page content.

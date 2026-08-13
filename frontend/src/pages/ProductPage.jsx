@@ -51,11 +51,9 @@ export default function ProductPage() {
         primaryCta={{ label: product.heroPrimary || "Request a demo", href: "/contact" }}
         secondaryCta={{ label: product.heroSecondary || "Talk to an expert", href: "/contact" }}
         trustLine="Production-grade · ERP-integrated · Deployed in weeks"
-        video="/media/cta-bg.mp4"
-        videoWebm="/media/cta-bg.webm"
-        videoPoster="/media/cta-bg.jpg"
         visual={PRODUCT_VISUALS[slug]}
         image="/img-dashboard.webp"
+        accent={product.accent}
       />
 
       {product.sections ? (

@@ -21,6 +21,7 @@ export function Hero({
   video,
   videoWebm,
   videoPoster,
+  accent,
 }) {
   if (variant === "split") {
     return (
@@ -78,6 +79,13 @@ export function Hero({
         ) : null}
         <div className="ic-hero-grid-dark absolute inset-0" />
         <div className="pointer-events-none absolute -right-40 top-0 h-[480px] w-[480px] rounded-full bg-brand-red/10 blur-3xl" />
+        {accent ? (
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -left-40 bottom-0 h-[420px] w-[420px] rounded-full blur-3xl opacity-[0.07]"
+            style={{ backgroundColor: accent }}
+          />
+        ) : null}
         <div className="relative">
           <div className="ic-container grid items-center gap-12 px-6 pb-24 pt-36 lg:grid-cols-[1.1fr_0.9fr] lg:px-10 lg:pb-32 lg:pt-48">
             <div className="max-w-2xl">
