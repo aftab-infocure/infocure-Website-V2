@@ -27,6 +27,15 @@ HOME · SERVICES (Digital Transformation, SAP Consulting, Oracle Consulting, Sal
   - Footer links updated to flagship pages. Sitemap updated with new URLs.
   - Legacy capability pages (/services/sap/*, /services/oracle/*, /services/ai, /rpa, /software-development, /cyber-security, /salesforce, /solutions/*) retained for SEO, removed from navigation.
 
+- 2026-08-13: PRODUCTION-READY QA PASS —
+  - Contact enquiries now email annie@infocure.in + aftab@infocure.in via Emergent managed email (EMERGENT_EMAIL_KEY in backend/.env; template + guardrail gate server-side).
+  - Form hardening: server + client phone validation, blank-field rejection, ARIA labels, autocomplete attrs.
+  - SEO: SEO.jsx now emits og:type/image/site_name + Twitter cards on every page; static duplicate canonical removed from index.html (one correct canonical per page); all pages have unique title/description/H1; sitemap.xml + robots.txt verified.
+  - Accessibility: skip-to-content link, Escape closes menus, focus-visible ring already global, all images have alt.
+  - Performance: LazyVideo everywhere, DT hero poster wired, code splitting (24 lazy chunks), prod build 0 warnings, main bundle 169.66 kB gzip.
+  - Cleanup: removed duplicate AdminInsights page (/admin/insights redirects to /adminia) and unused constants/testIds; no console.logs; no console errors.
+  - Responsive: zero horizontal overflow on 8 key pages × 7 widths (320–1920).
+
 ## Backlog / Next
 - P1: Server-side 301 for /services/team-augmentation if SEO demands it (currently client-side redirect).
 - P2: Admin-editable flagship page content.

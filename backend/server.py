@@ -6,10 +6,16 @@ from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
+import re
 import asyncio
 import logging
+import ipaddress
+import httpx
+from html import escape
+from html.parser import HTMLParser
+from urllib.parse import urlparse
 from pathlib import Path
-from pydantic import BaseModel, Field, EmailStr
+from pydantic import BaseModel, Field, EmailStr, field_validator
 from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
@@ -119,6 +125,20 @@ class ContactEnquiryCreate(BaseModel):
     interest: Optional[str] = ""
     message: str
 
+    @field_validator("phone")
+    @classmethod
+    def _valid_phone(cls, v):
+        if v and not re.fullmatch(r"\+?[0-9][0-9\s\-()]{6,19}", v.strip()):
+            raise ValueError("Invalid phone number")
+        return v.strip() if v else ""
+
+    @field_validator("name", "message")
+    @classmethod
+    def _not_blank(cls, v):
+        if not v or not v.strip():
+            raise ValueError("Required field")
+        return v.strip()
+
 
 @api_router.get("/")
 async def root():
@@ -130,32 +150,123 @@ async def health():
     return {"status": "healthy"}
 
 
-def _notify_email(enquiry: ContactEnquiry):
-    api_key = os.environ.get("RESEND_API_KEY")
-    if not api_key:
-        logger.info("RESEND_API_KEY not set — enquiry stored without email notification")
+def _notify_recipients() -> List[str]:
+    raw = os.environ.get("NOTIFY_EMAIL", "solutions@infocure.in")
+    return [e.strip() for e in raw.split(",") if e.strip()]
+
+
+# ---- Emergent managed email (Resend playbook) ----
+EMAIL_BASE_URL = "https://integrations.emergentagent.com"
+EMAIL_KEY = os.environ.get("EMERGENT_EMAIL_KEY", "")
+EMAIL_FROM_NAME = os.environ.get("EMAIL_FROM_NAME", "infocure technologies")
+EMAIL_REPLY_TO = os.environ.get("EMAIL_REPLY_TO", "solutions@infocure.in")
+
+_SHORTENERS = ("bit.ly", "tinyurl.com", "t.co", "is.gd", "cutt.ly", "goo.gl", "rebrand.ly")
+_CRED_ASK = ("reply with your password", "reply with the code", "send your password", "cvv",
+             "send us your password", "enter your password below", "confirm your card number",
+             "your full card number", "seed phrase", "recovery phrase", "verify your card",
+             "social security number", "confirm your bank details")
+_HOSTISH = re.compile(r"\b(?:https?://)?((?:[a-z0-9-]+\.)+[a-z]{2,})", re.I)
+
+
+def _host_ok(host: str) -> bool:
+    if not host or "xn--" in host:
+        return False
+    try:
+        ipaddress.ip_address(host)
+        return False
+    except ValueError:
+        pass
+    return not any(host == s or host.endswith("." + s) for s in _SHORTENERS)
+
+
+def _same_site(shown: str, real: str) -> bool:
+    return shown == real or real.endswith("." + shown) or shown.endswith("." + real)
+
+
+class _EmailScan(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.tags, self.urls, self.anchors = set(), [], []
+        self._href, self._text = None, []
+    def handle_starttag(self, tag, attrs):
+        self.tags.add(tag.lower())
+        self.urls += [v for k, v in attrs if k.lower() in ("href", "src") and v]
+        if tag.lower() == "a":
+            self._href = dict((k.lower(), v) for k, v in attrs).get("href")
+            self._text = []
+    def handle_data(self, data):
+        if self._href is not None:
+            self._text.append(data)
+    def handle_endtag(self, tag):
+        if tag.lower() == "a" and self._href is not None:
+            self.anchors.append((self._href, "".join(self._text)))
+            self._href, self._text = None, []
+
+
+def _assert_safe_email(subject: str, html: str) -> None:
+    scan = _EmailScan(); scan.feed(html)
+    if scan.tags & {"form", "input", "textarea", "select"}:
+        raise ValueError("No forms or input fields in email (G2)")
+    body = f"{subject}\n{html}".lower()
+    for p in _CRED_ASK:
+        if p in body:
+            raise ValueError(f"Email asks the recipient for credentials: {p!r} (G2)")
+    for url in scan.urls:
+        low = url.strip().lower()
+        if low.startswith(("mailto:", "tel:", "cid:", "#")):
+            continue
+        if not low.startswith("https://"):
+            raise ValueError(f"Email links/assets must be absolute https: {url!r} (G3)")
+        host = urlparse(low).hostname or ""
+        if not _host_ok(host) or urlparse(low).username is not None:
+            raise ValueError(f"Shortened, numeric-host or credential-bearing URL: {url!r} (G3)")
+    for href, text in scan.anchors:
+        real = urlparse(href.strip().lower()).hostname or ""
+        if not real:
+            continue
+        for m in _HOSTISH.finditer(text):
+            if not _same_site(m.group(1).lower(), real):
+                raise ValueError(f"Anchor text {m.group(1)!r} ≠ real link host {real!r} (G3)")
+
+
+async def send_email(*, to: List[str], subject: str, html: str, reply_to: Optional[str] = None) -> Optional[str]:
+    _assert_safe_email(subject, html)
+    payload = {"to": to, "subject": subject, "html": html, "from_name": EMAIL_FROM_NAME}
+    if reply_to or EMAIL_REPLY_TO:
+        payload["contact_email"] = reply_to or EMAIL_REPLY_TO
+    async with httpx.AsyncClient(timeout=30) as client:
+        resp = await client.post(
+            f"{EMAIL_BASE_URL}/api/v1/email/send",
+            headers={"X-Email-Key": EMAIL_KEY},
+            json=payload,
+        )
+    resp.raise_for_status()
+    return resp.json().get("id")
+
+
+async def _notify_email(enquiry: ContactEnquiry):
+    if not EMAIL_KEY:
+        logger.info("EMERGENT_EMAIL_KEY not set — enquiry stored without email notification")
         return
-    import resend
-    resend.api_key = api_key
     html = f"""
     <table style="font-family:Arial,sans-serif;max-width:560px">
       <tr><td><h2 style="margin:0">New enquiry — infocure.in</h2></td></tr>
-      <tr><td><p><b>Name:</b> {enquiry.name}</p>
-      <p><b>Email:</b> {enquiry.email}</p>
-      <p><b>Phone:</b> {enquiry.phone or '-'}</p>
-      <p><b>Company:</b> {enquiry.company or '-'}</p>
-      <p><b>Interest:</b> {enquiry.interest or '-'}</p>
-      <p><b>Message:</b><br/>{enquiry.message}</p></td></tr>
+      <tr><td><p><b>Name:</b> {escape(enquiry.name)}</p>
+      <p><b>Email:</b> {escape(enquiry.email)}</p>
+      <p><b>Phone:</b> {escape(enquiry.phone or '-')}</p>
+      <p><b>Company:</b> {escape(enquiry.company or '-')}</p>
+      <p><b>Interest:</b> {escape(enquiry.interest or '-')}</p>
+      <p><b>Message:</b><br/>{escape(enquiry.message)}</p></td></tr>
+      <tr><td><p style="font-size:12px;color:#888">Sent by {escape(EMAIL_FROM_NAME)} website contact form.</p></td></tr>
     </table>"""
-    params = {
-        "from": os.environ.get("SENDER_EMAIL", "onboarding@resend.dev"),
-        "to": [os.environ.get("NOTIFY_EMAIL", "solutions@infocure.in")],
-        "subject": f"Website enquiry: {enquiry.name} ({enquiry.company or 'No company'})",
-        "html": html,
-    }
     try:
-        resend.Emails.send(params)
-        logger.info(f"Notification email sent for enquiry {enquiry.id}")
+        await send_email(
+            to=_notify_recipients(),
+            subject=f"Website enquiry: {enquiry.name} ({enquiry.company or 'No company'})",
+            html=html,
+        )
+        logger.info(f"Notification email sent for enquiry {enquiry.id} to {_notify_recipients()}")
     except Exception as e:
         logger.error(f"Email notification failed: {e}")
 
@@ -166,7 +277,7 @@ async def create_enquiry(input: ContactEnquiryCreate):
     doc = enquiry.model_dump()
     doc["created_at"] = doc["created_at"].isoformat()
     await db.contact_enquiries.insert_one(doc)
-    asyncio.get_event_loop().run_in_executor(None, _notify_email, enquiry)
+    asyncio.create_task(_notify_email(enquiry))
     return enquiry
 
 

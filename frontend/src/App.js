@@ -21,7 +21,6 @@ const IndustriesIndex = lazy(() => import("@/pages/IndustriesIndex"));
 const IndustryPage = lazy(() => import("@/pages/IndustryPage"));
 const InsightsIndex = lazy(() => import("@/pages/InsightsIndex"));
 const InsightArticle = lazy(() => import("@/pages/InsightArticle"));
-const AdminInsights = lazy(() => import("@/pages/AdminInsights"));
 const AdminIA = lazy(() => import("@/pages/AdminIA"));
 const CaseStudiesIndex = lazy(() => import("@/pages/CaseStudiesIndex"));
 const CaseStudyPage = lazy(() => import("@/pages/CaseStudyPage"));
@@ -67,7 +66,7 @@ function App() {
       <BrowserRouter>
         <ScrollManager />
         <Header />
-        <main>
+        <main id="main-content">
           <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -95,7 +94,7 @@ function App() {
               <Route path="/insights" element={<InsightsIndex />} />
               <Route path="/insights/blog" element={<Blog />} />
               <Route path="/insights/:slug" element={<InsightArticle />} />
-              <Route path="/admin/insights" element={<AdminInsights />} />
+              <Route path="/admin/insights" element={<Navigate to="/adminia" replace />} />
               <Route path="/adminia" element={<AdminIA />} />
               <Route path="/case-studies" element={<CaseStudiesIndex />} />
               <Route path="/case-studies/:slug" element={<CaseStudyPage />} />

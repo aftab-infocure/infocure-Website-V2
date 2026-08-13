@@ -119,12 +119,13 @@ export default function Contact() {
               ) : (
                 <form onSubmit={submit} className="rounded-card border border-brand-mist bg-white p-8 shadow-card lg:p-10" data-testid="contact-form">
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <input required data-testid="contact-name" placeholder="Full name *" value={form.name} onChange={update("name")} className={inputCls} />
-                    <input required type="email" data-testid="contact-email-input" placeholder="Work email *" value={form.email} onChange={update("email")} className={inputCls} />
-                    <input data-testid="contact-phone-input" placeholder="Phone" value={form.phone} onChange={update("phone")} className={inputCls} />
-                    <input data-testid="contact-company" placeholder="Company" value={form.company} onChange={update("company")} className={inputCls} />
+                    <input required aria-label="Full name" autoComplete="name" data-testid="contact-name" placeholder="Full name *" value={form.name} onChange={update("name")} className={inputCls} />
+                    <input required type="email" aria-label="Work email" autoComplete="email" data-testid="contact-email-input" placeholder="Work email *" value={form.email} onChange={update("email")} className={inputCls} />
+                    <input type="tel" aria-label="Phone number" autoComplete="tel" pattern="\+?[0-9][0-9\s\-\(\)]{6,19}" title="Enter a valid phone number (digits, spaces, +, -, parentheses allowed)" data-testid="contact-phone-input" placeholder="Phone" value={form.phone} onChange={update("phone")} className={inputCls} />
+                    <input aria-label="Company" autoComplete="organization" data-testid="contact-company" placeholder="Company" value={form.company} onChange={update("company")} className={inputCls} />
                   </div>
                   <select
+                    aria-label="Area of interest"
                     data-testid="contact-interest"
                     value={form.interest}
                     onChange={update("interest")}
@@ -137,6 +138,7 @@ export default function Contact() {
                   </select>
                   <textarea
                     required
+                    aria-label="Project or challenge details"
                     data-testid="contact-message"
                     placeholder="Tell us about your project or challenge *"
                     rows={5}

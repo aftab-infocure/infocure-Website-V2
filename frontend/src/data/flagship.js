@@ -799,7 +799,7 @@ export const DIGITAL_TRANSFORMATION = {
     subhead:
       "We help ambitious businesses turn technology into measurable growth — modernizing enterprise applications, unifying data, and re-engineering operations so leadership can move faster with confidence.",
     trustLine: "150+ transformation programs · 12+ industries · 85% client retention",
-    image: "/img-digital-transformation.webp",
+    image: "/media/dt-hero-poster.jpg",
     video: "/media/dt-hero.mp4",
   },
   stats: [

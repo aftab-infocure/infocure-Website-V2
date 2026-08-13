@@ -119,8 +119,26 @@ export default function Header() {
     setOpen(null);
   }, [location.pathname, location.hash]);
 
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === "Escape") {
+        setOpen(null);
+        setMobileOpen(false);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   return (
     <header className="fixed inset-x-0 top-0 z-50" onMouseLeave={() => setOpen(null)}>
+      <a
+        href="#main-content"
+        data-testid="skip-to-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-cure focus:px-5 focus:py-2.5 focus:text-[13px] focus:font-semibold focus:text-white"
+      >
+        Skip to main content
+      </a>
       <div className="border-b border-white/10 bg-ink/95 backdrop-blur-2xl">
         <div className="mx-auto max-w-[1440px] px-5 sm:px-8">
           <div className="flex h-[72px] items-center justify-between gap-2">
