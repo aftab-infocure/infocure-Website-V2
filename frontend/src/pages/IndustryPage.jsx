@@ -1,23 +1,45 @@
-import { useParams, Link, Navigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useParams, useLocation, Link, Navigate } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import SEO from "@/components/site/SEO";
 import { Reveal } from "@/components/ref/motion";
-import { FeatureGrid, StatBand, CTABand } from "@/components/ref/sections";
+import { FeatureGrid, StatBand, CTABand, FAQAccordion } from "@/components/ref/sections";
 import Hero from "@/components/ref/Hero";
+import SectionNav from "@/components/site/SectionNav";
+import { SectionBlock } from "@/pages/FlagshipPage";
 import { getIndustry, INDUSTRIES } from "@/data/industries";
 import { PRODUCTS } from "@/data/products";
 import { SERVICES } from "@/data/services";
 
+const FLAGSHIP_NAMES = {
+  "/services/sap-consulting": "SAP Consulting",
+  "/services/oracle-consulting": "Oracle Consulting",
+  "/services/salesforce-consulting": "Salesforce Consulting",
+  "/services/build-cloud": "Build & Cloud",
+  "/services/digital-transformation": "Digital Transformation",
+  "/services/team-augmentation": "Team Augmentation",
+};
+
 const nameFor = (href) => {
   const prod = PRODUCTS.find((p) => `/products/${p.slug}` === href);
   if (prod) return prod.name;
+  if (FLAGSHIP_NAMES[href]) return FLAGSHIP_NAMES[href];
   const svc = SERVICES.find((s) => s.path === href);
   return svc ? svc.title : href;
 };
 
 export default function IndustryPage() {
   const { slug } = useParams();
+  const { hash, key } = useLocation();
   const industry = getIndustry(slug);
+
+  useEffect(() => {
+    if (hash) {
+      const el = document.getElementById(hash.slice(1));
+      if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "start" }), 320);
+    }
+  }, [hash, key]);
+
   if (!industry) return <Navigate to="/industries" replace />;
 
   const others = INDUSTRIES.filter((i) => i.slug !== slug).slice(0, 3);
@@ -30,14 +52,27 @@ export default function IndustryPage() {
         eyebrow={`Industry · ${industry.name}`}
         headline={industry.headline}
         subhead={industry.intro}
-        primaryCta={{ label: "Talk to an industry expert", href: "/contact" }}
-        secondaryCta={{ label: "Explore services", href: "/services/digital-transformation" }}
+        primaryCta={{ label: industry.heroPrimary || "Talk to an industry expert", href: "/contact" }}
+        secondaryCta={{ label: industry.heroSecondary || "Explore services", href: industry.heroSecondaryHref || "/services/digital-transformation" }}
         trustLine="Sector practices built on hundreds of engagements"
         video="/media/cta-bg.mp4"
         videoWebm="/media/cta-bg.webm"
         image={industry.image}
       />
 
+      {industry.sections ? (
+        <SectionNav
+          items={[
+            ...industry.sections.map((s) => ({ id: s.id, label: s.label })),
+            ...(industry.faqs ? [{ id: "faq", label: "FAQs" }] : []),
+          ]}
+        />
+      ) : null}
+
+      {industry.sections ? (
+        industry.sections.map((s, i) => <SectionBlock key={s.id} section={s} index={i} />)
+      ) : (
+      <>
       <Reveal>
         <FeatureGrid
           eyebrow="The reality"
@@ -89,6 +124,16 @@ export default function IndustryPage() {
       </section>
 
       <StatBand items={industry.outcomes.map((o) => ({ value: `${o.value}${o.suffix}`, label: o.label }))} />
+      </>
+      )}
+
+      {industry.faqs ? (
+        <div id="faq" className="scroll-mt-[132px]">
+          <Reveal>
+            <FAQAccordion title="Frequently asked questions" subtitle={industry.faqSubtitle} items={industry.faqs} />
+          </Reveal>
+        </div>
+      ) : null}
 
       {/* Related */}
       <section className="bg-white">
@@ -139,10 +184,10 @@ export default function IndustryPage() {
 
       <CTABand
         eyebrow="Let's begin"
-        title={`Let's transform ${industry.name.toLowerCase()} operations — starting with yours.`}
-        subtitle="Schedule a 30-minute call with a senior consultant who knows your sector."
-        primaryCta={{ label: "Schedule a Consultation", href: "/contact" }}
-        secondaryCta={{ label: "Request a Proposal", href: "/contact" }}
+        title={industry.cta?.title || `Let's transform ${industry.name.toLowerCase()} operations — starting with yours.`}
+        subtitle={industry.cta?.subtitle || "Schedule a 30-minute call with a senior consultant who knows your sector."}
+        primaryCta={{ label: industry.cta?.primaryLabel || "Schedule a Consultation", href: "/contact" }}
+        secondaryCta={{ label: industry.cta?.secondaryLabel || "Request a Proposal", href: "/contact" }}
       />
     </div>
   );

@@ -62,6 +62,14 @@ HOME · SERVICES (Digital Transformation, SAP Consulting, Oracle Consulting, Sal
 
 - 2026-08-13: PRODUCT HERO REFINEMENT — removed the generic cta-bg looping video from ALL 9 product heroes (no video element in DOM at all). Heroes now use the approved static treatment: dark charcoal bg + subtle architectural grid + red brand glow + a very subtle per-product accent glow (product.accent color). Product-specific visuals, layout, typography, CTAs unchanged. Homepage & Digital Transformation videos untouched (verified: home 3 videos, DT 1 video, product pages 0).
 
+- 2026-08-13: ERP CONTENT UPGRADE (audit fix) — /products/erp brought to portfolio standard (executive hero, 8 sections incl. 7-stage enterprise lifecycle timeline, SAP interoperability positioning, 6 cross-links, 9 FAQs; unverified % stats removed).
+- 2026-08-13: EXECUTIVE CONTENT PASS (MANUFACTURING) — /industries/manufacturing rewritten per spec (hero, 10 challenge chips, 8 landscape cards, 11 SAP-for-manufacturing cards, Production section linked to PPC, Supply Chain, Dealer & Distribution with 5 product links, Digital Transformation with CTA link, 10 outcome chips, 10-card Solutions Portfolio with working links, 7-stage Assess→Optimize timeline, 8 dark Why cards, 10 FAQs, spec CTAs/SEO). IndustryPage now supports rich sections/SectionNav/FAQ/configurable CTAs when industry.sections exists; other industry pages unchanged (legacy layout). nameFor resolves flagship service paths.
+
+## PRODUCT PORTFOLIO AUDIT RESULT (2026-08-13)
+Audited: all 9 product pages (CRM, ERP, HRMS, DMS, OMS, PPC, EXIM, Vehicle Tracking, e-Invoicing).
+Found & fixed: ERP page lacked the executive structure and carried unverified stats → rewritten to standard; cross-link maps enriched; nameFor flagship resolution fixed. Verified: unique H1/title/description per product, canonicals, zero video elements on product pages, zero overflow 320–1920, product menu integrity (9 items), distinct lifecycle labeling per product.
+Remaining: none blocking. Homepage & Digital Transformation untouched.
+
 ## Backlog / Next
 - P1: Server-side 301 for /services/team-augmentation if SEO demands it (currently client-side redirect).
 - P2: Admin-editable flagship page content.
