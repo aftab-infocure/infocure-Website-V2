@@ -10,7 +10,7 @@ function cx(...parts) {
   return parts.filter(Boolean).join(" ");
 }
 
-function SectionBlock({ section, index }) {
+export function SectionBlock({ section, index }) {
   const dark = section.kind === "dark";
   const bg = dark ? "bg-brand-ink text-white" : index % 2 === 0 ? "bg-white" : "bg-brand-cloud";
   return (

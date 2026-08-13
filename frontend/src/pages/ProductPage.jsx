@@ -2,8 +2,10 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import SEO from "@/components/site/SEO";
 import { Reveal } from "@/components/ref/motion";
-import { FeatureGrid, StatBand, CTABand } from "@/components/ref/sections";
+import { FeatureGrid, StatBand, CTABand, FAQAccordion } from "@/components/ref/sections";
 import Hero from "@/components/ref/Hero";
+import SectionNav from "@/components/site/SectionNav";
+import { SectionBlock } from "@/pages/FlagshipPage";
 import {
   CrmVisual, OmsVisual, DmsVisual, HrmsVisual, PpcVisual,
   EximVisual, VtsVisual, EinvVisual, ThemedVisual,
@@ -46,8 +48,8 @@ export default function ProductPage() {
         eyebrow={product.fullName}
         headline={product.tagline}
         subhead={product.heroCopy}
-        primaryCta={{ label: "Request a demo", href: "/contact" }}
-        secondaryCta={{ label: "Talk to an expert", href: "/contact" }}
+        primaryCta={{ label: product.heroPrimary || "Request a demo", href: "/contact" }}
+        secondaryCta={{ label: product.heroSecondary || "Talk to an expert", href: "/contact" }}
         trustLine="Production-grade · ERP-integrated · Deployed in weeks"
         video="/media/cta-bg.mp4"
         videoWebm="/media/cta-bg.webm"
@@ -56,17 +58,30 @@ export default function ProductPage() {
         image="/img-dashboard.webp"
       />
 
+      {product.sections ? (
+        <SectionNav
+          items={[
+            ...product.sections.map((s) => ({ id: s.id, label: s.label })),
+            ...(product.faqs ? [{ id: "faq", label: "FAQs" }] : []),
+          ]}
+        />
+      ) : null}
+
       <StatBand items={product.stats.map((s) => ({ value: `${s.value}${s.suffix}`, label: s.label }))} />
 
-      <Reveal>
-        <FeatureGrid
-          eyebrow="Modules"
-          title={`Everything ${product.name} should do — and rarely does.`}
-          subtitle="Depth where it matters, without the bloat that slows growing enterprises down."
-          items={product.modules.map((m) => ({ title: m.title, description: m.desc }))}
-          columns={3}
-        />
-      </Reveal>
+      {product.sections ? (
+        product.sections.map((s, i) => <SectionBlock key={s.id} section={s} index={i} />)
+      ) : (
+        <Reveal>
+          <FeatureGrid
+            eyebrow="Modules"
+            title={`Everything ${product.name} should do — and rarely does.`}
+            subtitle="Depth where it matters, without the bloat that slows growing enterprises down."
+            items={product.modules.map((m) => ({ title: m.title, description: m.desc }))}
+            columns={3}
+          />
+        </Reveal>
+      )}
 
       {/* Stack chips */}
       <section className="bg-brand-cloud border-y border-brand-mist">
@@ -85,6 +100,7 @@ export default function ProductPage() {
       </section>
 
       {/* Metrics — dark */}
+      {!product.sections && (
       <section className="bg-brand-ink text-white">
         <div className="ic-container px-6 py-16 lg:px-10 lg:py-20">
           <div className="grid gap-10 md:grid-cols-3">
@@ -99,6 +115,15 @@ export default function ProductPage() {
           </div>
         </div>
       </section>
+      )}
+
+      {product.faqs ? (
+        <div id="faq" className="scroll-mt-[132px]">
+          <Reveal>
+            <FAQAccordion title="Frequently asked questions" subtitle={product.faqSubtitle} items={product.faqs} />
+          </Reveal>
+        </div>
+      ) : null}
 
       {/* Other products */}
       <section className="bg-white">
@@ -130,10 +155,10 @@ export default function ProductPage() {
 
       <CTABand
         eyebrow="See it live"
-        title={`See what ${product.fullName} does for your operation.`}
-        subtitle="A 30-minute working demo on your own scenarios — not a slideware walkthrough."
-        primaryCta={{ label: "Request a Demo", href: "/contact" }}
-        secondaryCta={{ label: "Talk to an Expert", href: "/contact" }}
+        title={product.cta?.title || `See what ${product.fullName} does for your operation.`}
+        subtitle={product.cta?.subtitle || "A 30-minute working demo on your own scenarios — not a slideware walkthrough."}
+        primaryCta={{ label: product.cta?.primaryLabel || "Request a Demo", href: "/contact" }}
+        secondaryCta={{ label: product.cta?.secondaryLabel || "Talk to an Expert", href: "/contact" }}
       />
     </div>
   );

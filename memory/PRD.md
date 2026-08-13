@@ -46,6 +46,8 @@ HOME · SERVICES (Digital Transformation, SAP Consulting, Oracle Consulting, Sal
 
 - 2026-08-13: EXECUTIVE CONTENT PASS (TEAM AUGMENTATION) — single landing page rewritten per spec; canonical URL now /services/team-augmentation (nav + footer + sitemap updated; /team-augmentation redirects to it). Sections: challenge chips (8), 10 advantage cards, 4 grouped technology-expertise cards (SAP/Oracle/CRM/Engineering&Cloud), 3 engagement model cards, 6 delivery-coverage cards (delivery capability only — no office claims), 6-stage How-It-Works timeline, 10 use-case chips, 9 dark Why-Infocure cards, Traditional Hiring vs Team Augmentation comparison, 10 FAQs, Hire Consultants CTAs, spec SEO meta. Removed timeline-guarantee stat (2wks → 3 engagement models).
 
+- 2026-08-13: EXECUTIVE CONTENT PASS (CRM) — /products/crm rewritten per spec: new hero headline/subhead/CTAs, 11 sections (challenges chips ×9, solution cards ×7, lead channels incl. website/email/WhatsApp/IndiaMART, 7-stage pipeline timeline, Customer 360 ×8, management dashboards ×8, benefit chips ×10, integration ×8, industry cards ×5, 7-stage implementation timeline, dark Why-Infocure ×7) + 10 FAQs + spec CTA/SEO. ProductPage now renders rich sections+SectionNav+FAQ when a product config defines them (other product pages unchanged). Percentage-based stats/metrics removed from CRM per "no unverified claims" rule.
+
 ## Backlog / Next
 - P1: Server-side 301 for /services/team-augmentation if SEO demands it (currently client-side redirect).
 - P2: Admin-editable flagship page content.
