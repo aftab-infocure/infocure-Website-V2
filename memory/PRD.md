@@ -52,6 +52,8 @@ HOME · SERVICES (Digital Transformation, SAP Consulting, Oracle Consulting, Sal
 
 - 2026-08-13: EXECUTIVE CONTENT PASS (DMS) — /products/dms rewritten per spec with automotive channel affinity (hero "Connect Your Dealer Network. Strengthen Your Business.", 10 challenge chips, 8 capability cards, 8-stage dealer lifecycle timeline, 10 network-visibility cards, 7 channel-ops cards, 8 automotive cards, 8 integration cards framed with the approved "designed to work with your existing enterprise technology environment" positioning, 8 management-dashboard cards, 10 benefit chips, 8 dark Why cards, 8-stage implementation timeline, 5 industry cards with automotive primary, 10 FAQs, spec CTAs/SEO). URL /products/dms preserved.
 
+- 2026-08-13: EXECUTIVE CONTENT PASS (HRMS) — /products/hrms rewritten per spec (hero "Simplify Workforce Management. Empower Your People.", 10 challenge chips, 8 capability cards, 6-stage employee lifecycle timeline, 7 self-service cards, 8 visibility cards, 8 automation cards, 10 benefit chips, 8 integration cards, 7 industry cards, 8-stage implementation timeline, 8 dark Why cards, 10 FAQs, spec CTAs/SEO). URL /products/hrms preserved.
+
 ## Backlog / Next
 - P1: Server-side 301 for /services/team-augmentation if SEO demands it (currently client-side redirect).
 - P2: Admin-editable flagship page content.
