@@ -23,7 +23,7 @@ export function Wordmark({ dark = false, compact = false }) {
 const NAV = [
   { label: "Home", href: "/" },
   { label: "Services", items: NAV_SERVICES },
-  { label: "Team Augmentation", href: "/team-augmentation" },
+  { label: "Team Augmentation", href: "/services/team-augmentation" },
   { label: "Products", items: NAV_PRODUCTS },
   { label: "Industries", items: NAV_INDUSTRIES },
   { label: "Insights", items: NAV_INSIGHTS },

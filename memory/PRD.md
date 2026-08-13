@@ -44,6 +44,8 @@ HOME · SERVICES (Digital Transformation, SAP Consulting, Oracle Consulting, Sal
 
 - 2026-08-13: EXECUTIVE CONTENT PASS (BUILD & CLOUD) — /services/build-cloud rewritten per spec (10 challenge chips, 9 capability cards with spec copy, 8-stage Idea-to-Production timeline, 9 Cloud & Modernization cards, 8 Enterprise Integration cards, 8 Technology Areas cards, 10 outcome chips, 8 dark Why-Infocure cards, 4 Delivery Models cards, 10 FAQs, spec CTAs/SEO). URL /services/build-cloud preserved per redirect strategy instruction. TEAM_AUGMENTATION config restored after splice (regression-checked).
 
+- 2026-08-13: EXECUTIVE CONTENT PASS (TEAM AUGMENTATION) — single landing page rewritten per spec; canonical URL now /services/team-augmentation (nav + footer + sitemap updated; /team-augmentation redirects to it). Sections: challenge chips (8), 10 advantage cards, 4 grouped technology-expertise cards (SAP/Oracle/CRM/Engineering&Cloud), 3 engagement model cards, 6 delivery-coverage cards (delivery capability only — no office claims), 6-stage How-It-Works timeline, 10 use-case chips, 9 dark Why-Infocure cards, Traditional Hiring vs Team Augmentation comparison, 10 FAQs, Hire Consultants CTAs, spec SEO meta. Removed timeline-guarantee stat (2wks → 3 engagement models).
+
 ## Backlog / Next
 - P1: Server-side 301 for /services/team-augmentation if SEO demands it (currently client-side redirect).
 - P2: Admin-editable flagship page content.

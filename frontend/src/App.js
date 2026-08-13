@@ -82,9 +82,9 @@ function App() {
               <Route path="/services/oracle-consulting" element={<FlagshipPage config={ORACLE_CONSULTING} />} />
               <Route path="/services/salesforce-consulting" element={<FlagshipPage config={SALESFORCE_CONSULTING} />} />
               <Route path="/services/build-cloud" element={<FlagshipPage config={BUILD_CLOUD} />} />
-              <Route path="/team-augmentation" element={<TeamAugmentation />} />
+              <Route path="/team-augmentation" element={<Navigate to="/services/team-augmentation" replace />} />
               {/* Legacy capability URLs retained for SEO — never exposed in navigation */}
-              <Route path="/services/team-augmentation" element={<Navigate to="/team-augmentation" replace />} />
+              <Route path="/services/team-augmentation" element={<TeamAugmentation />} />
               <Route path="/services/sap/:slug" element={<ServicePage />} />
               <Route path="/services/oracle/:slug" element={<ServicePage />} />
               <Route path="/services/:slug" element={<ServicePage />} />

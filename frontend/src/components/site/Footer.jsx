@@ -7,7 +7,7 @@ const columns = [
     heading: "Services",
     links: [
       ...NAV_SERVICES.map((s) => ({ label: s.name, href: s.href })),
-      { label: "Team Augmentation", href: "/team-augmentation" },
+      { label: "Team Augmentation", href: "/services/team-augmentation" },
     ],
   },
   {
