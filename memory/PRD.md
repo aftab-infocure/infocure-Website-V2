@@ -38,6 +38,8 @@ HOME · SERVICES (Digital Transformation, SAP Consulting, Oracle Consulting, Sal
 
 - 2026-08-13: DT PAGE EXECUTIVE CONTENT PASS — /services/digital-transformation rewritten with executive-level messaging (design unchanged): new hero headline/subhead/CTAs, Business Challenges (10), Business-First Approach (10 steps), 10 Capability cards, 10 Business Outcomes, 8 Industry Expertise cards, 10 Technology Ecosystem cards, 8-stage horizontal Methodology timeline, Why Infocure (8 highlights), 9 FAQs, new final CTA, SEO meta title/description per spec. FlagshipPage renderer now supports per-page CTA labels and a "timeline" section kind; SEO.jsx no longer double-brands titles.
 
+- 2026-08-13: EXECUTIVE CONTENT PASS (SAP + ORACLE) — /services/sap-consulting rewritten per spec (challenges chips, 14 service cards, 12 expertise cards, Why-SAP highlights, 9-stage methodology timeline, 8 industry cards, 10 benefit chips, 8 dark Why-Infocure cards, 10 FAQs, new CTAs, spec SEO meta). /services/oracle-consulting rewritten per spec (challenges, 12 service cards, 10 expertise cards, approach highlights, 9-stage timeline, 8 industries, 10 benefits, 8 Why-Infocure cards, 10 FAQs, new CTAs, spec SEO meta). Salesforce/Build&Cloud/TA copy also upgraded to executive tone. Design untouched throughout.
+
 ## Backlog / Next
 - P1: Server-side 301 for /services/team-augmentation if SEO demands it (currently client-side redirect).
 - P2: Admin-editable flagship page content.
