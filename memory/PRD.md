@@ -50,6 +50,8 @@ HOME · SERVICES (Digital Transformation, SAP Consulting, Oracle Consulting, Sal
 
 - 2026-08-13: EXECUTIVE CONTENT PASS (OMS) — /products/oms rewritten per spec: operations-focused messaging distinct from CRM (hero "Orchestrate Every Order From Placement to Fulfillment", 10 challenge chips, 8 capability cards, 8-stage order lifecycle timeline, 6 channel cards, 7 inventory/fulfillment cards, 9 integration cards, 9 management-visibility cards, 10 benefit chips, 7 industry cards, 7-stage implementation timeline, 7 dark Why cards, 10 FAQs, spec CTAs/SEO). URL /products/oms preserved; unverified % stats removed.
 
+- 2026-08-13: EXECUTIVE CONTENT PASS (DMS) — /products/dms rewritten per spec with automotive channel affinity (hero "Connect Your Dealer Network. Strengthen Your Business.", 10 challenge chips, 8 capability cards, 8-stage dealer lifecycle timeline, 10 network-visibility cards, 7 channel-ops cards, 8 automotive cards, 8 integration cards framed with the approved "designed to work with your existing enterprise technology environment" positioning, 8 management-dashboard cards, 10 benefit chips, 8 dark Why cards, 8-stage implementation timeline, 5 industry cards with automotive primary, 10 FAQs, spec CTAs/SEO). URL /products/dms preserved.
+
 ## Backlog / Next
 - P1: Server-side 301 for /services/team-augmentation if SEO demands it (currently client-side redirect).
 - P2: Admin-editable flagship page content.
