@@ -48,6 +48,8 @@ HOME · SERVICES (Digital Transformation, SAP Consulting, Oracle Consulting, Sal
 
 - 2026-08-13: EXECUTIVE CONTENT PASS (CRM) — /products/crm rewritten per spec: new hero headline/subhead/CTAs, 11 sections (challenges chips ×9, solution cards ×7, lead channels incl. website/email/WhatsApp/IndiaMART, 7-stage pipeline timeline, Customer 360 ×8, management dashboards ×8, benefit chips ×10, integration ×8, industry cards ×5, 7-stage implementation timeline, dark Why-Infocure ×7) + 10 FAQs + spec CTA/SEO. ProductPage now renders rich sections+SectionNav+FAQ when a product config defines them (other product pages unchanged). Percentage-based stats/metrics removed from CRM per "no unverified claims" rule.
 
+- 2026-08-13: EXECUTIVE CONTENT PASS (OMS) — /products/oms rewritten per spec: operations-focused messaging distinct from CRM (hero "Orchestrate Every Order From Placement to Fulfillment", 10 challenge chips, 8 capability cards, 8-stage order lifecycle timeline, 6 channel cards, 7 inventory/fulfillment cards, 9 integration cards, 9 management-visibility cards, 10 benefit chips, 7 industry cards, 7-stage implementation timeline, 7 dark Why cards, 10 FAQs, spec CTAs/SEO). URL /products/oms preserved; unverified % stats removed.
+
 ## Backlog / Next
 - P1: Server-side 301 for /services/team-augmentation if SEO demands it (currently client-side redirect).
 - P2: Admin-editable flagship page content.
