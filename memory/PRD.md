@@ -56,6 +56,8 @@ HOME · SERVICES (Digital Transformation, SAP Consulting, Oracle Consulting, Sal
 
 - 2026-08-13: EXECUTIVE CONTENT PASS (VEHICLE TRACKING) — /products/vehicle-tracking rewritten per spec (hero "Know Where Your Fleet Is. Control How It Operates.", 9 challenge chips, 8 capability cards, 7 fleet-visibility cards, 7 route/trip cards, 8 fleet-operations cards, Logistics/Construction/FMCG scenario sections, 9 management cards, 10 benefit chips, 9 integration cards with SAP-compatibility positioning, 8 dark Why cards, 7-stage implementation timeline, 3 industry cards, 10 FAQs, spec CTAs/SEO). URL /products/vehicle-tracking preserved; unverified % stats removed.
 
+- 2026-08-13: EXECUTIVE CONTENT PASS (PPC) — /products/ppc rewritten per spec (manufacturing-focused hero, 10 challenge chips, 8 capability cards, 8-stage production lifecycle timeline, 9 production-visibility cards, 8 manufacturing-ops cards, 7 SAP/enterprise integration cards with approved compatibility positioning, Manufacturing + Engineering industry cards, 9 management cards, 10 benefit chips, 8 dark Why cards, 8-stage implementation timeline, Related Capabilities section with 6 working cross-links per the Manufacturing → S/4HANA + PPC + Vehicle Tracking + SAP Integration model, 10 FAQs, spec CTAs/SEO). SectionBlock now supports linked cards (design unchanged). URL /products/ppc preserved.
+
 ## Backlog / Next
 - P1: Server-side 301 for /services/team-augmentation if SEO demands it (currently client-side redirect).
 - P2: Admin-editable flagship page content.

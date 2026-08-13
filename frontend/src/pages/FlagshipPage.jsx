@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import SEO from "@/components/site/SEO";
 import Hero from "@/components/ref/Hero";
 import SectionNav from "@/components/site/SectionNav";
@@ -86,8 +86,8 @@ export function SectionBlock({ section, index }) {
 
         {section.kind === "cards" || section.kind === "dark" ? (
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-            {section.items.map((f, i) => (
-              <Reveal key={f.title} delay={0.05 * i} className="h-full">
+            {section.items.map((f, i) => {
+              const card = (
                 <div
                   className={cx(
                     "flex h-full flex-col rounded-card border p-6 transition-all duration-200 hover:-translate-y-1 lg:p-7",
@@ -101,8 +101,19 @@ export function SectionBlock({ section, index }) {
                     <p className={cx("mt-3 font-body text-[14.5px] leading-relaxed", dark ? "text-white/65" : "text-brand-slate")}>{f.desc}</p>
                   ) : null}
                 </div>
-              </Reveal>
-            ))}
+              );
+              return (
+                <Reveal key={f.title} delay={0.05 * i} className="h-full">
+                  {f.href ? (
+                    <Link to={f.href} data-testid={`card-link-${f.href.replace(/\//g, "-").replace(/^-+|-+$/g, "")}`} className="block h-full">
+                      {card}
+                    </Link>
+                  ) : (
+                    card
+                  )}
+                </Reveal>
+              );
+            })}
           </div>
         ) : null}
       </div>
