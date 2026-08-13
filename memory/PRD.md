@@ -40,6 +40,8 @@ HOME · SERVICES (Digital Transformation, SAP Consulting, Oracle Consulting, Sal
 
 - 2026-08-13: EXECUTIVE CONTENT PASS (SAP + ORACLE) — /services/sap-consulting rewritten per spec (challenges chips, 14 service cards, 12 expertise cards, Why-SAP highlights, 9-stage methodology timeline, 8 industry cards, 10 benefit chips, 8 dark Why-Infocure cards, 10 FAQs, new CTAs, spec SEO meta). /services/oracle-consulting rewritten per spec (challenges, 12 service cards, 10 expertise cards, approach highlights, 9-stage timeline, 8 industries, 10 benefits, 8 Why-Infocure cards, 10 FAQs, new CTAs, spec SEO meta). Salesforce/Build&Cloud/TA copy also upgraded to executive tone. Design untouched throughout.
 
+- 2026-08-13: EXECUTIVE CONTENT PASS (SALESFORCE) — /services/salesforce-consulting rewritten per spec (9 challenge chips, 12 service cards, 10 expertise cards, 7 approach highlights, 9-stage methodology timeline, 8 industry cards, 10 benefit chips, 8 dark Why-Infocure cards, 10 FAQs, spec hero/final CTAs, spec SEO meta). Design untouched.
+
 ## Backlog / Next
 - P1: Server-side 301 for /services/team-augmentation if SEO demands it (currently client-side redirect).
 - P2: Admin-editable flagship page content.
