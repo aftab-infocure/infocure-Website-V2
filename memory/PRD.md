@@ -70,6 +70,8 @@ Audited: all 9 product pages (CRM, ERP, HRMS, DMS, OMS, PPC, EXIM, Vehicle Track
 Found & fixed: ERP page lacked the executive structure and carried unverified stats → rewritten to standard; cross-link maps enriched; nameFor flagship resolution fixed. Verified: unique H1/title/description per product, canonicals, zero video elements on product pages, zero overflow 320–1920, product menu integrity (9 items), distinct lifecycle labeling per product.
 Remaining: none blocking. Homepage & Digital Transformation untouched.
 
+- 2026-08-13: EXECUTIVE CONTENT PASS (AUTOMOTIVE + TRADING & DISTRIBUTION + LOGISTICS) — three industry pages rewritten per specs: automotive (14 sections incl. SAP-for-automotive, dealer network, 7-stage Factory→Customer ecosystem timeline), trading-distribution (NEW page at /industries/trading-distribution; 14 sections incl. CRM/OMS/inventory/dealer/EXIM capability sections with cross-links; added to Industries index + sitemap, NOT added to nav dropdown per IA lock), logistics (15 sections incl. fleet visibility, 8-stage Order→Delivery ecosystem timeline, SAP connectivity). All with spec CTAs/SEO/FAQs (10 each).
+
 ## Backlog / Next
 - P1: Server-side 301 for /services/team-augmentation if SEO demands it (currently client-side redirect).
 - P2: Admin-editable flagship page content.
