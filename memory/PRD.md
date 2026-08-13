@@ -72,6 +72,8 @@ Remaining: none blocking. Homepage & Digital Transformation untouched.
 
 - 2026-08-13: EXECUTIVE CONTENT PASS (AUTOMOTIVE + TRADING & DISTRIBUTION + LOGISTICS) — three industry pages rewritten per specs: automotive (14 sections incl. SAP-for-automotive, dealer network, 7-stage Factory→Customer ecosystem timeline), trading-distribution (NEW page at /industries/trading-distribution; 14 sections incl. CRM/OMS/inventory/dealer/EXIM capability sections with cross-links; added to Industries index + sitemap, NOT added to nav dropdown per IA lock), logistics (15 sections incl. fleet visibility, 8-stage Order→Delivery ecosystem timeline, SAP connectivity). All with spec CTAs/SEO/FAQs (10 each).
 
+- 2026-08-13: EXECUTIVE CONTENT PASS (ENGINEERING + FMCG) — NEW industry pages /industries/engineering (15 sections: SAP-for-engineering, operational complexity, PPC production section, procurement & materials, EXIM international ops, 8-stage Customer-Requirement→Delivery ecosystem timeline, 8-card portfolio, 10 FAQs) and /industries/fmcg-distribution (15 sections: sales & distribution, order management, dealer network, inventory, fleet, SAP SD/MM/FICO, 7-stage Sales→Delivery ecosystem timeline, 9-card portfolio, 10 FAQs). Both added to Industries index + sitemap; nav dropdown unchanged. Industry pages total: 9.
+
 ## Backlog / Next
 - P1: Server-side 301 for /services/team-augmentation if SEO demands it (currently client-side redirect).
 - P2: Admin-editable flagship page content.
