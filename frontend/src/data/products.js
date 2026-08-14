@@ -16,7 +16,7 @@ export const PRODUCTS = [
     stats: [
       { value: 1, suffix: "", label: "Connected view of every customer" },
       { value: 7, suffix: "", label: "Lifecycle stages, fully visible" },
-      { value: 4, suffix: "+", label: "Lead channels captured — web, email, WhatsApp, IndiaMART" },
+      { value: 5, suffix: "+", label: "Lead channels captured — Web, email, WhatsApp, Phone, other media" },
     ],
     stack: ["ERP integration", "Website & WhatsApp lead capture", "Open APIs", "Role-based access", "Mobile-ready"],
     sections: [

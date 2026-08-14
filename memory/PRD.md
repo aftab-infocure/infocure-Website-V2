@@ -78,6 +78,8 @@ Remaining: none blocking. Homepage & Digital Transformation untouched.
 
 - 2026-08-14: PRODUCTION CMS — /adminia upgraded to full CMS: Create/Edit/Delete for Articles, Blog, Case Studies and Resources; featured image upload via Emergent object storage (type/size validated, served at /api/files/{path}); Save as Draft / Publish workflow (drafts hidden from all public endpoints/lists); SEO title, meta description and editable slug with auto-slug from title; Preview modal with SEO summary; session-expiry handling. Public Resources page now lists published resource content dynamically. Security: bcrypt+JWT (8h), login rate limiting (5/min/IP → 429), noindex admin page, no public admin links. InsightArticle uses seo_title/meta_description overrides. Backend: PUT /api/insights/{slug}, GET /api/admin/insights (all incl. drafts), POST /api/admin/upload.
 
+- 2026-08-14: STAT CORRECTIONS + MENU RENAME — DT 150+→100+ transformation programs; SAP 300+→100+ implementations, SLA 99.9%→99.6%; Oracle 60+→30+ Fusion, 80+→50+ EBS, SLA→99.6%; Build & Cloud "50+ Engineers on bench"→"20+ Technology experts", "200+ products shipped"→"200+ Applications shipped"; TA 200+→500+ consultants deployed; CRM lead channels 4+→5+ (Web, email, WhatsApp, Phone, other media); Products menu "ERP"→"Custom ERP" (user wrote "Custom ERM" — used ERP spelling, flag if ERM intended). Matching hero trust lines updated for consistency.
+
 ## Backlog / Next
 - P1: Server-side 301 for /services/team-augmentation if SEO demands it (currently client-side redirect).
 - P2: Admin-editable flagship page content.
