@@ -80,6 +80,8 @@ Remaining: none blocking. Homepage & Digital Transformation untouched.
 
 - 2026-08-14: STAT CORRECTIONS + MENU RENAME — DT 150+→100+ transformation programs; SAP 300+→100+ implementations, SLA 99.9%→99.6%; Oracle 60+→30+ Fusion, 80+→50+ EBS, SLA→99.6%; Build & Cloud "50+ Engineers on bench"→"20+ Technology experts", "200+ products shipped"→"200+ Applications shipped"; TA 200+→500+ consultants deployed; CRM lead channels 4+→5+ (Web, email, WhatsApp, Phone, other media); Products menu "ERP"→"Custom ERP" (user wrote "Custom ERM" — used ERP spelling, flag if ERM intended). Matching hero trust lines updated for consistency.
 
+- 2026-08-14: Products menu label confirmed as "Custom ERM" (user confirmed).
+
 ## Backlog / Next
 - P1: Server-side 301 for /services/team-augmentation if SEO demands it (currently client-side redirect).
 - P2: Admin-editable flagship page content.

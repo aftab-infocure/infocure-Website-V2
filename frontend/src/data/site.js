@@ -24,7 +24,7 @@ export const NAV_INSIGHTS = [
 
 export const NAV_PRODUCTS = [
   { name: "CRM", href: "/products/crm" },
-  { name: "Custom ERP", href: "/products/erp" },
+  { name: "Custom ERM", href: "/products/erp" },
   { name: "HRMS", href: "/products/hrms" },
   { name: "Dealer Management (DMS)", href: "/products/dms" },
   { name: "Order Management (OMS)", href: "/products/oms" },
