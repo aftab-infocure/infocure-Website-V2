@@ -19,7 +19,7 @@ export const NAV_SERVICES = [
 export const NAV_INSIGHTS = [
   { name: "Articles", href: "/insights" },
   { name: "Case Studies", href: "/case-studies" },
-  { name: "Blog", href: "/insights/blog" },
+  { name: "Resources", href: "/insights/resources" },
 ];
 
 export const NAV_PRODUCTS = [
@@ -37,9 +37,12 @@ export const NAV_PRODUCTS = [
 export const NAV_INDUSTRIES = [
   { name: "Manufacturing", href: "/industries/manufacturing" },
   { name: "Automotive", href: "/industries/automotive" },
+  { name: "Engineering", href: "/industries/engineering" },
+  { name: "Pharmaceutical", href: "/industries/pharmaceutical" },
+  { name: "Textile & Apparel", href: "/industries/textile-apparel" },
   { name: "Healthcare & Life Sciences", href: "/industries/healthcare" },
-  { name: "Financial Services", href: "/industries/financial-services" },
-  { name: "Retail & E-commerce", href: "/industries/retail" },
+  { name: "Trading & Distribution", href: "/industries/trading-distribution" },
+  { name: "FMCG & Distribution", href: "/industries/fmcg-distribution" },
   { name: "Logistics & Supply Chain", href: "/industries/logistics" },
 ];
 

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Linkedin, Mail, MapPin, Phone, ArrowUpRight, MessageCircle } from "lucide-react";
+import { Linkedin, Youtube, Mail, MapPin, Phone, ArrowUpRight, MessageCircle } from "lucide-react";
 import { NAV_SERVICES, NAV_PRODUCTS, NAV_INDUSTRIES, SITE } from "@/data/site";
 
 const columns = [
@@ -16,18 +16,22 @@ const columns = [
   },
   {
     heading: "Industries",
-    links: [
-      ...NAV_INDUSTRIES.map((i) => ({ label: i.name, href: i.href })),
-    ],
+    links: NAV_INDUSTRIES.map((i) => ({ label: i.name, href: i.href })),
   },
   {
-    heading: "Insights & Company",
+    heading: "Insights",
     links: [
       { label: "Articles", href: "/insights" },
       { label: "Case Studies", href: "/case-studies" },
-      { label: "Blog", href: "/insights/blog" },
-      { label: "Solutions", href: "/solutions/s4hana-rise" },
+      { label: "Resources", href: "/insights/resources" },
+    ],
+  },
+  {
+    heading: "Company",
+    links: [
       { label: "About Us", href: "/about" },
+      { label: "Leadership", href: "/about#leadership" },
+      { label: "Careers", href: "/about#careers" },
       { label: "Contact", href: "/contact" },
     ],
   },
@@ -88,10 +92,20 @@ export default function Footer() {
               >
                 <Linkedin className="h-4 w-4" />
               </a>
+              <a
+                aria-label="infocure technologies on YouTube"
+                href="https://www.youtube.com/@infocuretechnologies"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="footer-youtube"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/80 hover:border-white hover:text-white"
+              >
+                <Youtube className="h-4 w-4" />
+              </a>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-5">
             {columns.map((col) => (
               <div key={col.heading}>
                 <div className="font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-white/60">

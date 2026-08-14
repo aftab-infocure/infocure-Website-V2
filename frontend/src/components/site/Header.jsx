@@ -21,14 +21,12 @@ export function Wordmark({ dark = false, compact = false }) {
 
 // FINAL LOCKED IA — primary navigation
 const NAV = [
-  { label: "Home", href: "/" },
   { label: "Services", items: NAV_SERVICES },
   { label: "Team Augmentation", href: "/services/team-augmentation" },
   { label: "Products", items: NAV_PRODUCTS },
   { label: "Industries", items: NAV_INDUSTRIES },
   { label: "Insights", items: NAV_INSIGHTS },
   { label: "About", items: NAV_ABOUT },
-  { label: "Contact", href: "/contact" },
 ];
 
 const idFor = (label) => label.toLowerCase().replace(/\s+/g, "-");
