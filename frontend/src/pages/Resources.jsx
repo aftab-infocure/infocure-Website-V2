@@ -1,9 +1,13 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
 import SEO from "@/components/site/SEO";
 import Hero from "@/components/ref/Hero";
 import { Reveal } from "@/components/ref/motion";
 import { CTABand } from "@/components/ref/sections";
 import { FileText, BookOpen, ListChecks, BookMarked, FileDown, BarChart3, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
+
+const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 const RESOURCES = [
   {
@@ -45,6 +49,10 @@ const RESOURCES = [
 ];
 
 export default function Resources() {
+  const [published, setPublished] = useState([]);
+  useEffect(() => {
+    axios.get(`${API}/insights?type=resource`).then((r) => setPublished(r.data)).catch(() => setPublished([]));
+  }, []);
   return (
     <div data-testid="resources-page">
       <SEO
@@ -101,6 +109,36 @@ export default function Resources() {
           </div>
         </div>
       </section>
+
+      {published.length > 0 ? (
+        <section className="border-t border-brand-mist bg-brand-cloud">
+          <div className="ic-container px-6 py-16 lg:px-10 lg:py-20">
+            <Reveal>
+              <div className="mb-4 font-body text-[12px] font-semibold uppercase tracking-[0.18em] text-brand-red">Latest Resources</div>
+              <h2 className="ic-h2 mb-12">Published Resources</h2>
+            </Reveal>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+              {published.map((r, i) => (
+                <Reveal key={r.slug} delay={0.05 * i} className="h-full">
+                  <Link
+                    to={`/insights/${r.slug}`}
+                    data-testid={`published-resource-${r.slug}`}
+                    className="group flex h-full flex-col rounded-card border border-brand-mist bg-white p-6 shadow-card transition-all duration-200 hover:-translate-y-1 hover:border-brand-red/40 hover:shadow-card-hover lg:p-7"
+                  >
+                    <div className="font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-red">{r.category}</div>
+                    <h3 className="mt-3 font-display text-[19px] font-semibold text-brand-ink">{r.title}</h3>
+                    <p className="mt-3 flex-1 font-body text-[14.5px] leading-relaxed text-brand-slate">{r.excerpt}</p>
+                    <span className="mt-5 inline-flex items-center gap-1.5 font-body text-[13.5px] font-semibold text-brand-ink">
+                      Read resource
+                      <ArrowUpRight className="h-3.5 w-3.5 text-brand-red transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </span>
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <CTABand
         eyebrow="Insights · Resources"

@@ -51,7 +51,7 @@ export default function InsightArticle() {
 
   return (
     <div data-testid={`insight-article-${slug}`}>
-      <SEO title={post.title} description={post.excerpt} path={`/insights/${slug}`} jsonLd={articleJsonLd} />
+      <SEO title={post.seo_title || post.title} description={post.meta_description || post.excerpt} path={`/insights/${slug}`} jsonLd={articleJsonLd} />
 
       <section className="ic-hero-grid relative isolate overflow-hidden bg-white">
         <div className="ic-container-narrow relative px-6 pb-14 pt-32 lg:px-0 lg:pt-44">

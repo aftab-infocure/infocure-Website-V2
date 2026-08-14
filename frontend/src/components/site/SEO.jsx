@@ -3,7 +3,7 @@ import { SITE } from "@/data/site";
 
 const OG_IMAGE = `${SITE.domain}/images/og-image.jpg`;
 
-export default function SEO({ title, description, path = "/", jsonLd }) {
+export default function SEO({ title, description, path = "/", jsonLd, robots }) {
   const url = `${SITE.domain}${path}`;
   const fullTitle = title
     ? /infocure/i.test(title) ? title : `${title} | infocure technologies`
@@ -13,7 +13,7 @@ export default function SEO({ title, description, path = "/", jsonLd }) {
     <Helmet>
       <title>{fullTitle}</title>
       <meta name="description" content={desc} />
-      <meta name="robots" content="index, follow" />
+      <meta name="robots" content={robots || "index, follow"} />
       <link rel="canonical" href={url} />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="infocure technologies" />

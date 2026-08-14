@@ -1,4 +1,5 @@
-from fastapi import FastAPI, APIRouter, HTTPException, Header, Depends
+from fastapi import FastAPI, APIRouter, HTTPException, Header, Depends, UploadFile, File, Request
+from fastapi.responses import Response
 import bcrypt
 import jwt
 from datetime import timedelta
@@ -77,14 +78,29 @@ class AdminLogin(BaseModel):
     password: str
 
 
+_login_attempts = {}
+LOGIN_WINDOW_SEC = 60
+LOGIN_MAX_ATTEMPTS = 5
+
+
 @api_router.post("/admin/login")
-async def admin_login(body: AdminLogin):
+async def admin_login(body: AdminLogin, request: Request):
+    ip = request.client.host if request.client else "unknown"
+    now = datetime.now(timezone.utc).timestamp()
+    attempts = [t for t in _login_attempts.get(ip, []) if now - t < LOGIN_WINDOW_SEC]
+    if len(attempts) >= LOGIN_MAX_ATTEMPTS:
+        raise HTTPException(status_code=429, detail="Too many login attempts. Try again in a minute.")
     email = body.email.strip().lower()
     if email != ADMIN_EMAIL:
+        attempts.append(now)
+        _login_attempts[ip] = attempts
         raise HTTPException(status_code=403, detail="This account is not authorized.")
     admin = await db.admins.find_one({"email": email})
     if not admin or not _verify_password(body.password, admin.get("password_hash", "")):
+        attempts.append(now)
+        _login_attempts[ip] = attempts
         raise HTTPException(status_code=401, detail="Invalid email or password.")
+    _login_attempts.pop(ip, None)
     return {"token": _create_token(email), "email": email}
 
 
@@ -307,6 +323,9 @@ class Insight(BaseModel):
     date: str
     read_minutes: int = 5
     image: str = ""
+    status: str = "published"
+    seo_title: str = ""
+    meta_description: str = ""
     sections: List[InsightSection] = []
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
@@ -320,7 +339,113 @@ class InsightCreate(BaseModel):
     date: str
     read_minutes: int = 5
     image: str = ""
+    status: str = "published"
+    seo_title: str = ""
+    meta_description: str = ""
     sections: List[InsightSection] = []
+
+
+class InsightUpdate(BaseModel):
+    title: Optional[str] = None
+    excerpt: Optional[str] = None
+    category: Optional[str] = None
+    type: Optional[str] = None
+    date: Optional[str] = None
+    read_minutes: Optional[int] = None
+    image: Optional[str] = None
+    status: Optional[str] = None
+    seo_title: Optional[str] = None
+    meta_description: Optional[str] = None
+    sections: Optional[List[InsightSection]] = None
+
+
+# ---------------- Object storage (featured images) ----------------
+
+STORAGE_BASE = (os.environ.get("INTEGRATION_PROXY_URL") or "").strip() or "https://integrations.emergentagent.com"
+STORAGE_URL = STORAGE_BASE.rstrip("/") + "/objstore/api/v1/storage"
+EMERGENT_KEY = os.environ.get("EMERGENT_LLM_KEY")
+APP_NAME = "infocure"
+_storage_key = None
+ALLOWED_IMAGE_TYPES = {"image/jpeg": "jpg", "image/png": "png", "image/webp": "webp", "image/gif": "gif"}
+MAX_IMAGE_BYTES = 5 * 1024 * 1024
+
+
+def init_storage(force: bool = False):
+    global _storage_key
+    if _storage_key and not force:
+        return _storage_key
+    with httpx.Client(timeout=30) as client:
+        resp = client.post(f"{STORAGE_URL}/init", json={"emergent_key": EMERGENT_KEY})
+    resp.raise_for_status()
+    _storage_key = resp.json()["storage_key"]
+    return _storage_key
+
+
+def put_object(path: str, data: bytes, content_type: str) -> dict:
+    key = init_storage()
+    with httpx.Client(timeout=120) as client:
+        resp = client.put(
+            f"{STORAGE_URL}/objects/{path}",
+            headers={"X-Storage-Key": key, "Content-Type": content_type},
+            data=data,
+        )
+    if resp.status_code == 404:
+        key = init_storage(force=True)
+        with httpx.Client(timeout=120) as client:
+            resp = client.put(
+                f"{STORAGE_URL}/objects/{path}",
+                headers={"X-Storage-Key": key, "Content-Type": content_type},
+                data=data,
+            )
+    resp.raise_for_status()
+    return resp.json()
+
+
+def get_object(path: str) -> tuple:
+    key = init_storage()
+    with httpx.Client(timeout=60) as client:
+        resp = client.get(f"{STORAGE_URL}/objects/{path}", headers={"X-Storage-Key": key})
+    if resp.status_code == 404:
+        key = init_storage(force=True)
+        with httpx.Client(timeout=60) as client:
+            resp = client.get(f"{STORAGE_URL}/objects/{path}", headers={"X-Storage-Key": key})
+    resp.raise_for_status()
+    return resp.content, resp.headers.get("Content-Type", "application/octet-stream")
+
+
+@api_router.post("/admin/upload")
+async def upload_image(file: UploadFile = File(...), admin=Depends(admin_guard)):
+    if not file.content_type or file.content_type not in ALLOWED_IMAGE_TYPES:
+        raise HTTPException(status_code=400, detail="Only JPEG, PNG, WebP or GIF images are allowed")
+    data = await file.read()
+    if len(data) > MAX_IMAGE_BYTES:
+        raise HTTPException(status_code=400, detail="Image must be under 5MB")
+    ext = ALLOWED_IMAGE_TYPES[file.content_type]
+    path = f"{APP_NAME}/uploads/{uuid.uuid4()}.{ext}"
+    result = await asyncio.to_thread(put_object, path, data, file.content_type)
+    record = {
+        "id": str(uuid.uuid4()),
+        "storage_path": result["path"],
+        "original_filename": file.filename,
+        "content_type": file.content_type,
+        "size": result["size"],
+        "is_deleted": False,
+        "created_at": datetime.now(timezone.utc).isoformat(),
+    }
+    await db.files.insert_one(record)
+    return {"url": f"/api/files/{result['path']}", "path": result["path"]}
+
+
+@api_router.get("/files/{path:path}")
+async def serve_file(path: str):
+    record = await db.files.find_one({"storage_path": path, "is_deleted": False}, {"_id": 0})
+    if not record:
+        raise HTTPException(status_code=404, detail="File not found")
+    try:
+        data, content_type = await asyncio.to_thread(get_object, path)
+    except Exception:
+        raise HTTPException(status_code=404, detail="File not found")
+    return Response(content=data, media_type=record.get("content_type", content_type))
 
 
 def _require_admin(x_admin_key: Optional[str]):
@@ -436,6 +561,11 @@ SEED_BLOG = [
 
 @api_router.on_event("startup")
 async def seed_insights():
+    try:
+        await asyncio.to_thread(init_storage)
+        logger.info("Object storage initialized")
+    except Exception as e:
+        logger.error(f"Storage init failed: {e}")
     if await db.insights.count_documents({"type": {"$ne": "blog"}}) == 0:
         for item in SEED_INSIGHTS:
             doc = Insight(**item).model_dump()
@@ -459,14 +589,22 @@ def _serialize_insight(doc):
 
 @api_router.get("/insights", response_model=List[Insight])
 async def list_insights(type: Optional[str] = None):
-    query = {"type": type} if type else {}
+    query = {"status": {"$ne": "draft"}}
+    if type:
+        query["type"] = type
     docs = await db.insights.find(query, {"_id": 0}).sort("created_at", -1).to_list(100)
+    return [_serialize_insight(d) for d in docs]
+
+
+@api_router.get("/admin/insights", response_model=List[Insight])
+async def admin_list_insights(admin=Depends(admin_guard)):
+    docs = await db.insights.find({}, {"_id": 0}).sort("created_at", -1).to_list(500)
     return [_serialize_insight(d) for d in docs]
 
 
 @api_router.get("/insights/{slug}", response_model=Insight)
 async def get_insight(slug: str):
-    doc = await db.insights.find_one({"slug": slug}, {"_id": 0})
+    doc = await db.insights.find_one({"slug": slug, "status": {"$ne": "draft"}}, {"_id": 0})
     if not doc:
         raise HTTPException(status_code=404, detail="Article not found")
     return _serialize_insight(doc)
@@ -482,6 +620,18 @@ async def create_insight(input: InsightCreate, admin=Depends(admin_guard)):
     doc["created_at"] = doc["created_at"].isoformat()
     await db.insights.insert_one(doc)
     return insight
+
+
+@api_router.put("/insights/{slug}", response_model=Insight)
+async def update_insight(slug: str, input: InsightUpdate, admin=Depends(admin_guard)):
+    existing = await db.insights.find_one({"slug": slug})
+    if not existing:
+        raise HTTPException(status_code=404, detail="Content not found")
+    updates = {k: v for k, v in input.model_dump().items() if v is not None}
+    if updates:
+        await db.insights.update_one({"slug": slug}, {"$set": updates})
+    doc = await db.insights.find_one({"slug": slug}, {"_id": 0})
+    return _serialize_insight(doc)
 
 
 @api_router.delete("/insights/{slug}")
