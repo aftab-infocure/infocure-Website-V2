@@ -1,0 +1,41 @@
+{
+  "summary": "Comprehensive frontend + spot backend verification of Final Website Refinement checklist (items 1-6). Backend: /api/insights returns 6 items, all type 'article' (no blog) — 3 former blog posts migrated correctly. All 6 static /resources/*.pdf files return 200. Frontend: Header nav is exactly Services, Team Augmentation, Products, Industries, Insights, About + Talk to an Expert CTA (no Home, no Contact). About dropdown = Company/Leadership/Careers (no Contact). Insights dropdown = Articles/Case Studies/Resources. Footer still has Contact info (phone/email). Team Augmentation page correctly shows the 3 stats (300+ / 500+ / 85%) with correct labels. Resources page renders exactly 6 branded cards (WHITEPAPER, GUIDE, CHECKLIST, BROCHURE, EBOOK, INDUSTRY REPORT) each with a download-* data-testid anchor href pointing to /resources/*.pdf (files verified 200). /insights/blog redirects to /insights. About page renders dark hero with H1 'Innovation beyond digital transformation.', marquee strip, 5 chapters (01-05), #leadership and #careers anchors exist. CMS at /adminia login works with admin@infocure.in / InfocureAdmin@2026; content type radios are exactly Article / Case Study / Resource (data-testids type-article, type-case-study, type-resource — NO Blog); selecting Resource reveals pdf-upload-section with upload-pdf-btn. Legacy pages (/services/oracle/ebs, /products/hrms, /industries/healthcare) all render without crashing. ONE VIOLATION FOUND: Homepage '/' still exposes a numeric-claims stats row in HomeHero.jsx containing '11+ Years of consulting practice', '200+ Enterprise engagements', '300+ Certified consultants'. Per the review request, ALL numeric performance claims must be scrubbed from the homepage (Team Augmentation is the only allowed exception). Also to note: 6 pages on other services/products/industries verified clean of the listed patterns.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "HomeHero.jsx (src/components/ref/HomeHero.jsx lines 127-137)",
+        "issue": "Homepage '/' hero still renders a numeric-claims trust bar: '11+ Years of consulting practice', '200+ Enterprise engagements', '300+ Certified consultants'. Review request FIX 2 explicitly requires: 'ALL unsupported numeric claims scrubbed site-wide EXCEPT Team Augmentation page'. These three stat items must be removed from Home (or replaced with non-numeric copy). '200+' is one of the explicitly banned patterns listed in the request.",
+        "selector": "main .font-mono.text-brand-red (Home hero stats row)",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/test_reports/iteration_3.json",
+    "/app/test_reports/cms_admin.png"
+  ],
+  "action_items": [
+    "Remove the 3-item stats array (11+, 200+, 300+) from /app/frontend/src/components/ref/HomeHero.jsx lines 127-137 to satisfy the site-wide numeric-claim scrubbing requirement. Only /services/team-augmentation is permitted to show numeric stats (300+/500+/85%)."
+  ],
+  "critical_code_review_comments": [
+    "Header.jsx NAV array correctly excludes Home and Contact top-level entries; logo Link to='/' preserves home access.",
+    "site.js NAV_ABOUT = [Company, Leadership, Careers] with #leadership and #careers hashes — no Contact. Confirmed correctly.",
+    "site.js NAV_INSIGHTS = [Articles, Case Studies, Resources] — matches spec.",
+    "Resources.jsx builds 6 anchor tags with download attribute and data-testids matching the checklist (download-whitepaper-s4hana-readiness et al.). Files exist at /app/frontend/public/resources/ and are served 200.",
+    "AdminIA.jsx TYPES = article/case-study/resource (verified via visible radios). Selecting 'Resource' correctly reveals data-testid='pdf-upload-section' and 'upload-pdf-btn'. Blog is removed from CMS.",
+    "Backend /api/insights returned 6 records, all type='article' — the 3 former blog posts (why-fit-to-standard-beats-customization, cloud-migration-without-the-drama, erp-and-ai-what-changes-in-2026) were migrated correctly.",
+    "HomeHero.jsx retains stat block that contradicts FIX 2 — needs to be removed by main agent.",
+    "React Router SPA handles /insights/blog -> /insights client-side redirect (curl of the raw URL returns 200 shell, browser navigates correctly to /insights)."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "100% (spot-checked endpoints)", "frontend": "~95% (1 numeric-claims violation on Home)"},
+  "test_credentials": "CMS admin: admin@infocure.in / InfocureAdmin@2026 — verified working",
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Only outstanding item after fix: verify homepage '/' body text no longer contains '11+', '200+', or '300+' (grep-style substring check). All other checklist items already verified passing. If HomeHero.jsx stats block is removed, the visual layout of hero may need a minor rework — verify the border-top divider (line 125) doesn't leave an empty line under the CTA buttons.",
+  "rca of the issue": "Root cause: While the main agent scrubbed numeric claims from services/products/industries data files, /app/frontend/src/components/ref/HomeHero.jsx still contains an inline JSX stats array (11+/200+/300+) that was never touched. Reproduction: goto https://consulting-preview-8.preview.emergentagent.com/ , inspect .font-mono.text-brand-red spans in hero — 3 items present. Mitigation: delete the motion.div block containing the .map(...) stats at HomeHero.jsx L121-137, or replace with a non-numeric proof-strip (e.g., 'Trusted across manufacturing, automotive, pharma')."
+}

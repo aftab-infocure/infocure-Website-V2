@@ -3,7 +3,7 @@ import { useParams, useLocation, Link, Navigate } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import SEO from "@/components/site/SEO";
 import { Reveal } from "@/components/ref/motion";
-import { FeatureGrid, StatBand, CTABand, FAQAccordion } from "@/components/ref/sections";
+import { FeatureGrid, CTABand, FAQAccordion } from "@/components/ref/sections";
 import Hero from "@/components/ref/Hero";
 import SectionNav from "@/components/site/SectionNav";
 import { SectionBlock } from "@/pages/FlagshipPage";
@@ -122,8 +122,6 @@ export default function IndustryPage() {
           </div>
         </div>
       </section>
-
-      <StatBand items={industry.outcomes.map((o) => ({ value: `${o.value}${o.suffix}`, label: o.label }))} />
       </>
       )}
 

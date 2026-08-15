@@ -82,7 +82,16 @@ Remaining: none blocking. Homepage & Digital Transformation untouched.
 
 - 2026-08-14: Products menu label confirmed as "Custom ERM" (user confirmed).
 
+- 2026-08-15: FINAL WEBSITE REFINEMENT (Message 513) — COMPLETE:
+  - Nav: Home & Contact confirmed absent from primary nav; Contact also removed from About dropdown (footer + CTA only). Insights menu = Articles / Case Studies / Resources exactly.
+  - NUMERIC CLAIM SCRUB: all unsupported stats removed site-wide — flagship configs (SAP/Oracle/Salesforce/Build&Cloud/DT stats arrays + trustLines rewritten qualitative), legacy data codemod (163 stat entries removed from services-general/services-sap/solutions/industries/products), HomeHero trust bar replaced with qualitative proof strip, About IMPACT band removed, ServicePage/About/Home copy rephrased. ONLY exception (per user): Team Augmentation stats = 300+ Pool of certified consultants / 500+ Resources deployed / 85% Client retention. Case-study client-outcome numbers intentionally kept (engagement-specific results, not company claims).
+  - BLOG ERADICATED: Blog.jsx deleted; /insights/blog → 301-style client redirect to /insights; CMS "Blog" type removed; MongoDB migration on startup converts type blog → article (3 posts migrated, verified); sitemap entry removed. Zero visible "Blog" strings remain.
+  - RESOURCES + PDF: /insights/resources rebuilt — 6 branded downloadable PDFs (whitepaper, guide, checklist, brochure, eBook, industry report) generated with reportlab into /app/frontend/public/resources/, each card has a working Download PDF anchor. CMS now supports PDF uploads (≤20MB) for Resource type; pdf_url added to Insight models; published resources render Download PDF link when set. Upload endpoint rejects non-image/non-PDF types.
+  - ABOUT PAGE premium rebuild: dark kinetic hero (masked line-by-line reveal, parallax glows), slow editorial marquee, 5 numbered manifesto chapters (01 Journey → 05 Careers), #leadership/#careers anchors preserved; content unchanged otherwise.
+  - Verified by testing agent (iteration_3): all items pass after HomeHero fix; legacy pages render clean; CMS login + PDF upload flow verified end-to-end via curl.
+
 ## Backlog / Next
 - P1: Server-side 301 for /services/team-augmentation if SEO demands it (currently client-side redirect).
 - P2: Admin-editable flagship page content.
 - P2: Analytics events on section-nav usage.
+- P2: Replace generated sample PDFs with real Infocure documents via CMS uploads.

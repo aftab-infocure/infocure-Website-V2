@@ -2,7 +2,7 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import SEO from "@/components/site/SEO";
 import { Reveal } from "@/components/ref/motion";
-import { FeatureGrid, StatBand, CTABand, FAQAccordion } from "@/components/ref/sections";
+import { FeatureGrid, CTABand, FAQAccordion } from "@/components/ref/sections";
 import Hero from "@/components/ref/Hero";
 import SectionNav from "@/components/site/SectionNav";
 import { SectionBlock } from "@/pages/FlagshipPage";
@@ -65,8 +65,6 @@ export default function ProductPage() {
         />
       ) : null}
 
-      <StatBand items={product.stats.map((s) => ({ value: `${s.value}${s.suffix}`, label: s.label }))} />
-
       {product.sections ? (
         product.sections.map((s, i) => <SectionBlock key={s.id} section={s} index={i} />)
       ) : (
@@ -96,24 +94,6 @@ export default function ProductPage() {
           </Reveal>
         </div>
       </section>
-
-      {/* Metrics — dark */}
-      {!product.sections && (
-      <section className="bg-brand-ink text-white">
-        <div className="ic-container px-6 py-16 lg:px-10 lg:py-20">
-          <div className="grid gap-10 md:grid-cols-3">
-            {product.metrics.map((m, i) => (
-              <Reveal key={m.label} delay={0.08 * i}>
-                <div className="border-l-2 border-brand-red pl-5">
-                  <div className="ic-stat-lg text-brand-red">{m.value}{m.suffix}</div>
-                  <div className="mt-3 font-body text-[13.5px] leading-snug text-white/70">{m.label}</div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-      )}
 
       {product.faqs ? (
         <div id="faq" className="scroll-mt-[132px]">

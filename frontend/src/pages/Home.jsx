@@ -102,7 +102,7 @@ const INSIGHTS = [
     category: "Executive Guide",
     date: "May 2026",
     title: "The CFO's guide to an S/4HANA migration that finishes on time",
-    excerpt: "Why 70% of S/4HANA programmes overrun, and the four governance moves that keep the rest on plan.",
+    excerpt: "Why so many S/4HANA programmes drift off plan, and the four governance moves that keep the rest on track.",
     image: IMG.analytics,
   },
   {

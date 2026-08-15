@@ -14,7 +14,6 @@ const Legal = lazy(() => import("@/pages/Legal"));
 const ServicePage = lazy(() => import("@/pages/ServicePage"));
 const DigitalTransformation = lazy(() => import("@/pages/DigitalTransformation"));
 const TeamAugmentation = lazy(() => import("@/pages/TeamAugmentation"));
-const Blog = lazy(() => import("@/pages/Blog"));
 const ProductPage = lazy(() => import("@/pages/ProductPage"));
 const SolutionPage = lazy(() => import("@/pages/SolutionPage"));
 const IndustriesIndex = lazy(() => import("@/pages/IndustriesIndex"));
@@ -94,7 +93,7 @@ function App() {
               <Route path="/industries/:slug" element={<IndustryPage />} />
               <Route path="/insights" element={<InsightsIndex />} />
               <Route path="/insights/resources" element={<Resources />} />
-              <Route path="/insights/blog" element={<Blog />} />
+              <Route path="/insights/blog" element={<Navigate to="/insights" replace />} />
               <Route path="/insights/:slug" element={<InsightArticle />} />
               <Route path="/admin/insights" element={<Navigate to="/adminia" replace />} />
               <Route path="/adminia" element={<AdminIA />} />

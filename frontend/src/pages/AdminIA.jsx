@@ -16,7 +16,6 @@ const slugify = (s) =>
 
 const TYPES = [
   { value: "article", label: "Article", dest: "/insights" },
-  { value: "blog", label: "Blog", dest: "/insights/blog" },
   { value: "case-study", label: "Case Study", dest: "/case-studies" },
   { value: "resource", label: "Resource", dest: "/insights/resources" },
 ];
@@ -36,7 +35,7 @@ function bodyToText(sections) {
 
 const initial = {
   title: "", slug: "", excerpt: "", category: "Digital Transformation", date: "",
-  read_minutes: 5, image: "", body: "", type: "article", seo_title: "", meta_description: "",
+  read_minutes: 5, image: "", pdf_url: "", body: "", type: "article", seo_title: "", meta_description: "",
 };
 
 export default function AdminIA() {
@@ -49,7 +48,9 @@ export default function AdminIA() {
   const [preview, setPreview] = useState(false);
   const [busy, setBusy] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [uploadingPdf, setUploadingPdf] = useState(false);
   const fileRef = useRef(null);
+  const pdfRef = useRef(null);
   const authed = Boolean(token);
   const auth = { headers: { Authorization: `Bearer ${token}` } };
 
@@ -95,6 +96,7 @@ export default function AdminIA() {
     date: form.date || new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" }),
     read_minutes: Number(form.read_minutes) || 5,
     image: form.image,
+    pdf_url: form.pdf_url,
     status,
     seo_title: form.seo_title,
     meta_description: form.meta_description || form.excerpt,
@@ -149,12 +151,30 @@ export default function AdminIA() {
     }
   };
 
+  const uploadPdf = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploadingPdf(true);
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      const { data } = await axios.post(`${API}/admin/upload`, fd, auth);
+      setForm((f) => ({ ...f, pdf_url: data.url }));
+      toast.success("PDF uploaded.");
+    } catch (err) {
+      toast.error(err?.response?.data?.detail || "PDF upload failed.");
+    } finally {
+      setUploadingPdf(false);
+      if (pdfRef.current) pdfRef.current.value = "";
+    }
+  };
+
   const startEdit = (p) => {
     setEditing(p.slug);
     setSlugTouched(true);
     setForm({
       title: p.title, slug: p.slug, excerpt: p.excerpt, category: p.category, date: p.date,
-      read_minutes: p.read_minutes, image: p.image || "", body: bodyToText(p.sections),
+      read_minutes: p.read_minutes, image: p.image || "", pdf_url: p.pdf_url || "", body: bodyToText(p.sections),
       type: p.type || "article", seo_title: p.seo_title || "", meta_description: p.meta_description || "",
     });
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -244,6 +264,24 @@ export default function AdminIA() {
                       <img src={form.image} alt="Featured preview" data-testid="image-preview" className="mt-3 h-32 w-auto rounded-card border border-brand-mist object-cover" />
                     ) : null}
                   </div>
+
+                  {form.type === "resource" ? (
+                    <div className="mt-4" data-testid="pdf-upload-section">
+                      <div className="mb-2 font-body text-[12px] font-semibold uppercase tracking-[0.14em] text-brand-slate">PDF download (Resources)</div>
+                      <div className="flex flex-wrap items-center gap-3">
+                        <button type="button" data-testid="upload-pdf-btn" onClick={() => pdfRef.current?.click()} disabled={uploadingPdf} className="inline-flex h-11 items-center gap-2 rounded-button border border-brand-mist bg-white px-5 font-body text-[14px] font-semibold text-brand-ink hover:border-brand-red/40">
+                          <Upload className="h-4 w-4" /> {uploadingPdf ? "Uploading…" : "Upload PDF"}
+                        </button>
+                        <input ref={pdfRef} type="file" accept="application/pdf" onChange={uploadPdf} className="hidden" data-testid="upload-pdf-input" />
+                        <input aria-label="PDF URL" data-testid="publish-pdf-url" placeholder="…or paste PDF URL" value={form.pdf_url} onChange={update("pdf_url")} className={`${inputCls} flex-1 min-w-[220px]`} />
+                      </div>
+                      {form.pdf_url ? (
+                        <p className="mt-2 font-body text-[12.5px] text-brand-slate" data-testid="pdf-attached-note">
+                          Attached: <a href={form.pdf_url} target="_blank" rel="noopener noreferrer" className="font-semibold text-brand-red underline">{form.pdf_url}</a>
+                        </p>
+                      ) : null}
+                    </div>
+                  ) : null}
 
                   <textarea required aria-label="Body content" data-testid="publish-body" placeholder={"Body * — blank line between paragraphs.\nStart a line with '## ' for a heading."} rows={12} value={form.body} onChange={update("body")} className={`${inputCls} mt-4 resize-y font-mono2 text-[13.5px]`} />
 

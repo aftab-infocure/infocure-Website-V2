@@ -2,7 +2,7 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import SEO from "@/components/site/SEO";
 import { Reveal } from "@/components/ref/motion";
-import { StatBand, CTABand } from "@/components/ref/sections";
+import { CTABand } from "@/components/ref/sections";
 import { ThemedVisual } from "@/components/ref/visuals";
 import Hero from "@/components/ref/Hero";
 import { getSolution } from "@/data/solutions";
@@ -82,11 +82,6 @@ export default function SolutionPage() {
           </div>
         </div>
       </section>
-
-      <StatBand
-        tone="dark"
-        items={solution.outcomes.map((o) => ({ value: `${o.value}${o.suffix}`, label: o.label }))}
-      />
 
       {/* Related */}
       <section className="bg-white">

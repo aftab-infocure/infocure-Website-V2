@@ -20,12 +20,6 @@ export const SOLUTIONS = [
       { title: "Migrate", desc: "Technical conversion with clean-core guardrails." },
       { title: "Operate", desc: "Continuous operations, release adoption and optimization." },
     ],
-    outcomes: [
-      { value: 30, suffix: "%", label: "Lower infrastructure TCO" },
-      { value: 50, suffix: "%", label: "Faster upgrade cycles" },
-      { value: 99.9, suffix: "%", label: "Platform availability", decimals: 1 },
-      { value: 1, suffix: "", label: "Single accountable SLA" },
-    ],
     related: [
       { name: "SAP HANA Migration", href: "/services/sap/hana-migration" },
       { name: "SAP Consultation", href: "/services/sap/consultation" },
@@ -52,12 +46,6 @@ export const SOLUTIONS = [
       { title: "Model", desc: "Live and acquired data models with governance." },
       { title: "Visualize", desc: "Story design, planning templates and predictive scenarios." },
       { title: "Adopt", desc: "Rollout, training and center-of-excellence handover." },
-    ],
-    outcomes: [
-      { value: 70, suffix: "%", label: "Faster management reporting" },
-      { value: 1, suffix: "", label: "Version of the truth" },
-      { value: 50, suffix: "%", label: "Less spreadsheet planning" },
-      { value: 4, suffix: " wks", label: "First dashboard live" },
     ],
     related: [
       { name: "Artificial Intelligence", href: "/services/ai" },
@@ -86,12 +74,6 @@ export const SOLUTIONS = [
       { title: "Migrate", desc: "Employee data conversion with full audit trails." },
       { title: "Adopt", desc: "HR and employee enablement with adoption analytics." },
     ],
-    outcomes: [
-      { value: 60, suffix: "%", label: "HR ticket reduction" },
-      { value: 100, suffix: "%", label: "Payroll accuracy" },
-      { value: 90, suffix: "%", label: "Self-service adoption" },
-      { value: 12, suffix: "+", label: "Country rollouts delivered" },
-    ],
     related: [
       { name: "HRMS Product", href: "/products/hrms" },
       { name: "SAP Implementation", href: "/services/sap/implementation" },
@@ -118,12 +100,6 @@ export const SOLUTIONS = [
       { title: "Activate", desc: "Catalog activation, spaces and page design." },
       { title: "Extend", desc: "Custom apps and workflow where standards fall short." },
       { title: "Measure", desc: "Adoption analytics and continuous UX refinement." },
-    ],
-    outcomes: [
-      { value: 50, suffix: "%", label: "Faster task completion" },
-      { value: 3, suffix: "×", label: "User satisfaction improvement" },
-      { value: 70, suffix: "%", label: "Training time reduced" },
-      { value: 100, suffix: "%", label: "Mobile-capable processes" },
     ],
     related: [
       { name: "SAP Implementation", href: "/services/sap/implementation" },

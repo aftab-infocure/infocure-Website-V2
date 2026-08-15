@@ -125,13 +125,13 @@ export function HomeHero() {
             className="mt-12 flex flex-wrap items-center gap-x-10 gap-y-4 border-t border-white/15 pt-7"
           >
             {[
-              { value: "11+", label: "Years of consulting practice" },
-              { value: "200+", label: "Enterprise engagements" },
-              { value: "300+", label: "Certified consultants" },
+              "Senior-led delivery, start to finish",
+              "Trusted across manufacturing, automotive & distribution",
+              "India · GCC · Europe · International",
             ].map((s) => (
-              <div key={s.label} className="flex items-baseline gap-3">
-                <span className="font-mono text-[24px] font-semibold text-brand-red">{s.value}</span>
-                <span className="max-w-[150px] font-body text-[12.5px] leading-snug text-white/65">{s.label}</span>
+              <div key={s} className="flex items-center gap-3">
+                <span className="h-1.5 w-1.5 flex-none rounded-full bg-brand-red" />
+                <span className="font-body text-[12.5px] font-medium leading-snug text-white/65">{s}</span>
               </div>
             ))}
           </motion.div>

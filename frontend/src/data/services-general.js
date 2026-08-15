@@ -7,11 +7,6 @@ export const GENERAL_SERVICES = [
     heroCopy: "EBS implementation, upgrade and managed support that extends the life — and the returns — of your Oracle backbone.",
     seo: { title: "Oracle EBS Services", description: "Oracle E-Business Suite implementation, R12.2 upgrades, and managed support — maximize your EBS investment." },
     image: "/img-sap-oracle.webp",
-    stats: [
-      { value: 80, suffix: "+", label: "EBS engagements" },
-      { value: 15, suffix: "+", label: "Modules covered" },
-      { value: 99.9, suffix: "%", label: "Support SLA adherence", decimals: 1 },
-    ],
     capabilities: [
       { title: "EBS Implementation & Rollout", desc: "Financials, SCM, Manufacturing and HCM implementations with proven templates." },
       { title: "R12.2 Upgrades", desc: "Online-patching-enabled upgrades with minimal downtime and full CEMLI remediation." },
@@ -25,12 +20,6 @@ export const GENERAL_SERVICES = [
       { title: "Plan", desc: "Upgrade or optimization roadmap with costed options." },
       { title: "Execute", desc: "Rehearsed delivery with regression automation." },
       { title: "Support", desc: "Continuous run, patch and improve cycles." },
-    ],
-    outcomes: [
-      { value: 30, suffix: "%", label: "Lower run costs" },
-      { value: 50, suffix: "%", label: "Faster period close" },
-      { value: 100, suffix: "%", label: "Premier support compliance" },
-      { value: 20, suffix: "+", label: "Years of EBS expertise" },
     ],
     faqs: [
       { q: "Should we stay on EBS or move to Fusion?", a: "It depends on customization depth and cloud appetite. We model both paths objectively — including a hybrid coexistence strategy." },
@@ -51,11 +40,6 @@ export const GENERAL_SERVICES = [
     heroCopy: "Fusion Cloud implementation and migration — ERP, HCM, SCM and EPM — delivered with the discipline enterprise finance demands.",
     seo: { title: "Oracle Fusion Cloud Services", description: "Oracle Fusion Cloud implementation and migration for ERP, HCM, SCM and EPM — enterprise-grade delivery from design to run." },
     image: "/img-cloud-2.webp",
-    stats: [
-      { value: 60, suffix: "+", label: "Fusion deployments" },
-      { value: 4, suffix: "+", label: "Pillars covered (ERP/HCM/SCM/EPM)" },
-      { value: 90, suffix: "%", label: "Adoption within 90 days" },
-    ],
     capabilities: [
       { title: "Fusion ERP Cloud", desc: "GL, AP, AR, FA and Procurement configured around leading practice, not legacy habit." },
       { title: "Fusion HCM Cloud", desc: "Core HR, payroll interfaces, talent and workforce management for global workforces." },
@@ -70,12 +54,6 @@ export const GENERAL_SERVICES = [
       { title: "Migrate", desc: "Data conversion cycles with reconciliation sign-off." },
       { title: "Adopt", desc: "Training, cutover and hypercare." },
       { title: "Sustain", desc: "Quarterly update management and continuous improvement." },
-    ],
-    outcomes: [
-      { value: 45, suffix: "%", label: "Close-cycle acceleration" },
-      { value: 35, suffix: "%", label: "Process automation rate" },
-      { value: 100, suffix: "%", label: "Update compliance maintained" },
-      { value: 3, suffix: "×", label: "Faster reporting cycles" },
     ],
     faqs: [
       { q: "How disruptive is moving from EBS to Fusion?", a: "With phased coexistence patterns, business units migrate in waves — operations never stop." },
@@ -96,11 +74,6 @@ export const GENERAL_SERVICES = [
     heroCopy: "End-to-end transformation consulting — strategy, process reimagination, platform modernization and change leadership under one accountable roof.",
     seo: { title: "Digital Transformation Consulting", description: "Enterprise digital transformation: strategy, process reimagination, platform modernization and change management that delivers measurable outcomes." },
     image: "/img-digital-transformation.webp",
-    stats: [
-      { value: 150, suffix: "+", label: "Transformation programs" },
-      { value: 12, suffix: "+", label: "Industries transformed" },
-      { value: 85, suffix: "%", label: "Client retention rate" },
-    ],
     capabilities: [
       { title: "Transformation Strategy", desc: "North-star architecture, value mapping and a sequenced roadmap your board can fund with confidence." },
       { title: "Process Reimagination", desc: "Process mining and redesign that removes decades of accumulated friction." },
@@ -115,12 +88,6 @@ export const GENERAL_SERVICES = [
       { title: "Mobilize", desc: "Program governance, funding model and quick-win waves." },
       { title: "Deliver", desc: "Agile execution in value releases, not big-bang." },
       { title: "Institutionalize", desc: "Capabilities, governance and culture embedded for the long term." },
-    ],
-    outcomes: [
-      { value: 25, suffix: "%", label: "Operating cost reduction" },
-      { value: 40, suffix: "%", label: "Cycle-time improvement" },
-      { value: 3, suffix: "×", label: "Return on transformation spend" },
-      { value: 90, suffix: "%", label: "Benefits realized as planned" },
     ],
     faqs: [
       { q: "Where should transformation start?", a: "With diagnosis, not technology. Our assessment identifies the few moves that unlock the most value — then sequences everything else behind them." },
@@ -141,11 +108,6 @@ export const GENERAL_SERVICES = [
     heroCopy: "From copilots and predictive models to intelligent document processing — AI engineered for production, governance and measurable ROI.",
     seo: { title: "Enterprise AI Services", description: "Production-grade AI: copilots, predictive analytics, intelligent document processing and ML operations with governance and measurable ROI." },
     image: "/img-ai.webp",
-    stats: [
-      { value: 50, suffix: "+", label: "AI solutions in production" },
-      { value: 70, suffix: "%", label: "Manual review eliminated" },
-      { value: 8, suffix: " wks", label: "Idea to production pilot" },
-    ],
     capabilities: [
       { title: "Enterprise Copilots & GenAI", desc: "RAG-grounded assistants over your documents, ERP data and knowledge bases — secure and hallucination-controlled." },
       { title: "Predictive Analytics", desc: "Demand forecasting, churn, maintenance and credit models that plug into real decisions." },
@@ -159,12 +121,6 @@ export const GENERAL_SERVICES = [
       { title: "Prove", desc: "Time-boxed pilot on real data with success criteria agreed upfront." },
       { title: "Productionize", desc: "Hardening, integration and MLOps for enterprise scale." },
       { title: "Scale", desc: "Rollout, adoption and continuous model improvement." },
-    ],
-    outcomes: [
-      { value: 60, suffix: "%", label: "Faster document processing" },
-      { value: 20, suffix: "%", label: "Forecast accuracy gain" },
-      { value: 95, suffix: "%", label: "Extraction accuracy" },
-      { value: 6, suffix: " mo", label: "Typical payback period" },
     ],
     faqs: [
       { q: "How do you keep GenAI answers accurate?", a: "Retrieval-grounded architectures, evaluation harnesses and human-in-the-loop controls — accuracy is measured, not assumed." },
@@ -185,11 +141,6 @@ export const GENERAL_SERVICES = [
     heroCopy: "UiPath and Power Automate programs that remove swivel-chair work across finance, HR, supply chain and customer operations.",
     seo: { title: "RPA Services — Robotic Process Automation", description: "Enterprise RPA with UiPath and Power Automate: assessment, bot factory, attended/unattended automation and managed run." },
     image: "/img-business-process.webp",
-    stats: [
-      { value: 400, suffix: "+", label: "Bots in production" },
-      { value: 1.2, suffix: "M", label: "Hours returned to business", decimals: 1 },
-      { value: 70, suffix: "%", label: "Avg. process effort removed" },
-    ],
     capabilities: [
       { title: "Automation Assessment", desc: "Pipeline discovery and effort/value scoring that builds a bankable automation roadmap." },
       { title: "Bot Factory", desc: "Industrialized build standards, reusable components and code review for enterprise-grade bots." },
@@ -204,12 +155,6 @@ export const GENERAL_SERVICES = [
       { title: "Build", desc: "Component-based development with peer review." },
       { title: "Deploy", desc: "Controlled release into orchestrated production." },
       { title: "Run", desc: "Monitoring, healing and continuous optimization." },
-    ],
-    outcomes: [
-      { value: 85, suffix: "%", label: "Straight-through processing" },
-      { value: 4, suffix: " wks", label: "Average bot delivery" },
-      { value: 99.5, suffix: "%", label: "Bot execution accuracy", decimals: 1 },
-      { value: 12, suffix: " mo", label: "Typical program payback" },
     ],
     faqs: [
       { q: "Which processes are best for RPA?", a: "High-volume, rule-based work with structured inputs — invoice posting, reconciliation, master data, report generation and order entry are classic starters." },
@@ -230,11 +175,6 @@ export const GENERAL_SERVICES = [
     heroCopy: "Sales Cloud, Service Cloud and integration delivery that turns Salesforce from an expensive Rolodex into the operating system of your revenue.",
     seo: { title: "Salesforce Consulting Services", description: "Salesforce implementation, integration and managed services: Sales Cloud, Service Cloud and CPQ engineered for revenue operations." },
     image: "/img-business-networks.webp",
-    stats: [
-      { value: 70, suffix: "+", label: "Salesforce orgs delivered" },
-      { value: 45, suffix: "%", label: "Pipeline visibility gain" },
-      { value: 30, suffix: "%", label: "Sales productivity uplift" },
-    ],
     capabilities: [
       { title: "Sales & Service Cloud", desc: "Opportunity, account and case management modeled on how your teams actually sell and serve." },
       { title: "CPQ & Billing", desc: "Complex quoting, approvals and revenue recognition without spreadsheet side-channels." },
@@ -248,12 +188,6 @@ export const GENERAL_SERVICES = [
       { title: "Build", desc: "Iterative configuration with sandbox previews." },
       { title: "Integrate", desc: "ERP and marketing stack connectivity." },
       { title: "Adopt", desc: "Role-based training and adoption analytics." },
-    ],
-    outcomes: [
-      { value: 35, suffix: "%", label: "Faster quote-to-cash" },
-      { value: 90, suffix: "%", label: "Forecast accuracy" },
-      { value: 50, suffix: "%", label: "Less manual data entry" },
-      { value: 100, suffix: "%", label: "Single customer view" },
     ],
     faqs: [
       { q: "Can Salesforce replace our spreadsheets and side systems?", a: "Yes — CPQ, approvals and reporting move in-platform. We migrate the logic, not just the data." },
@@ -274,11 +208,6 @@ export const GENERAL_SERVICES = [
     heroCopy: "Product-grade engineering for the gaps packaged software can't fill — web platforms, mobile apps, APIs and integrations built to last.",
     seo: { title: "Custom Software Development", description: "Enterprise software development: web platforms, mobile apps, APIs and integrations engineered with product discipline." },
     image: "/img-coding-interface.webp",
-    stats: [
-      { value: 200, suffix: "+", label: "Products shipped" },
-      { value: 50, suffix: "+", label: "Engineers on bench" },
-      { value: 99.9, suffix: "%", label: "Uptime across managed apps", decimals: 1 },
-    ],
     capabilities: [
       { title: "Web Platforms", desc: "React/Next.js front-ends on scalable cloud back-ends — fast, accessible, secure." },
       { title: "Mobile Applications", desc: "Native-quality cross-platform apps for field force, dealers and customers." },
@@ -293,12 +222,6 @@ export const GENERAL_SERVICES = [
       { title: "Build", desc: "Two-week sprints with demo-driven feedback." },
       { title: "Harden", desc: "Security, performance and accessibility gates." },
       { title: "Operate", desc: "SLA-backed run and continuous enhancement." },
-    ],
-    outcomes: [
-      { value: 40, suffix: "%", label: "Faster time-to-market" },
-      { value: 60, suffix: "%", label: "Defects caught pre-release" },
-      { value: 100, suffix: "%", label: "Code you own outright" },
-      { value: 24, suffix: "/7", label: "Managed operations" },
     ],
     faqs: [
       { q: "Who owns the code?", a: "You do — full IP transfer, documented codebases and clean repositories are contractual defaults." },
@@ -319,16 +242,11 @@ export const GENERAL_SERVICES = [
     heroCopy: "Vetted SAP, Oracle, Salesforce and engineering talent embedded into your teams — scaling up in weeks, not quarters.",
     seo: { title: "IT Team Augmentation", description: "Staff augmentation for SAP, Oracle, Salesforce and software engineering — senior vetted consultants embedded in weeks." },
     image: "/img-freedom-of-devices.webp",
-    stats: [
-      { value: 200, suffix: "+", label: "Consultants deployed" },
-      { value: 2, suffix: " wks", label: "Average time to onboard" },
-      { value: 92, suffix: "%", label: "Engagement renewal rate" },
-    ],
     capabilities: [
       { title: "SAP & Oracle Consultants", desc: "Functional, technical and Basis specialists across modules — senior profiles only." },
       { title: "Engineering Pods", desc: "Full-stack developers, QA automation and DevOps engineers who ship from week one." },
       { title: "Architects & Leads", desc: "Fractional solution and enterprise architects for critical decisions." },
-      { title: "Rigorous Vetting", desc: "Multi-stage technical assessment — fewer than 5% of applicants make our bench." },
+      { title: "Rigorous Vetting", desc: "Multi-stage technical assessment — only proven, senior talent makes our bench." },
       { title: "Flexible Models", desc: "Time-and-material, dedicated pods or build-operate-transfer structures." },
       { title: "Managed Performance", desc: "Regular reviews, replacement guarantees and knowledge continuity protocols." },
     ],
@@ -337,12 +255,6 @@ export const GENERAL_SERVICES = [
       { title: "Match", desc: "Shortlist of vetted profiles within days." },
       { title: "Onboard", desc: "Structured ramp-up with your tooling and rituals." },
       { title: "Perform", desc: "Managed delivery with quarterly reviews." },
-    ],
-    outcomes: [
-      { value: 3, suffix: "×", label: "Faster than traditional hiring" },
-      { value: 40, suffix: "%", label: "Cost advantage vs local hires" },
-      { value: 5, suffix: "%", label: "Bench acceptance rate" },
-      { value: 48, suffix: " hrs", label: "Replacement guarantee window" },
     ],
     faqs: [
       { q: "How fast can someone start?", a: "Shortlists arrive within days; most consultants onboard inside two weeks." },
@@ -363,11 +275,6 @@ export const GENERAL_SERVICES = [
     heroCopy: "Assessment, hardening and managed detection for enterprise estates — with special depth in SAP and ERP security.",
     seo: { title: "Enterprise Cyber Security Services", description: "Cyber security consulting: assessments, SAP security hardening, SOC and compliance for enterprise estates." },
     image: "/img-server.webp",
-    stats: [
-      { value: 100, suffix: "+", label: "Security assessments" },
-      { value: 80, suffix: "%", label: "Critical risks closed in 90 days" },
-      { value: 24, suffix: "/7", label: "Threat monitoring" },
-    ],
     capabilities: [
       { title: "Security Assessment & VAPT", desc: "Application, network and cloud penetration testing with prioritized remediation." },
       { title: "SAP Security & GRC", desc: "Role redesign, SoD remediation, and SAP-specific attack-surface hardening." },
@@ -381,12 +288,6 @@ export const GENERAL_SERVICES = [
       { title: "Prioritize", desc: "Risk-ranked remediation roadmap." },
       { title: "Harden", desc: "Technical fixes, IAM and monitoring deployment." },
       { title: "Monitor", desc: "Continuous detection, response and reporting." },
-    ],
-    outcomes: [
-      { value: 90, suffix: "%", label: "Phishing resilience gain" },
-      { value: 70, suffix: "%", label: "Attack surface reduced" },
-      { value: 15, suffix: " min", label: "Incident response SLA" },
-      { value: 100, suffix: "%", label: "Audit pass rate" },
     ],
     faqs: [
       { q: "Do you specialize in SAP security?", a: "Yes — role redesign, SoD conflict remediation and SAP attack-surface hardening are signature capabilities few generalist firms offer." },

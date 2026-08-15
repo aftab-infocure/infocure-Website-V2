@@ -27,17 +27,11 @@ export const SAP_CONSULTING = {
       "Infocure helps organizations transform business operations through SAP S/4HANA, Cloud ERP, SAP Business Technology Platform, Application Management Services and enterprise-wide SAP consulting. We enable businesses to modernize processes, improve operational efficiency and accelerate digital transformation with scalable SAP solutions.",
     primaryLabel: "Talk to an SAP Expert",
     secondaryLabel: "Request a Consultation",
-    trustLine: "100+ implementations · 12+ countries · 98% go-live success rate",
+    trustLine: "Senior-led delivery · Fit-to-standard discipline · Support that stays after go-live",
     image: "/img-sap-oracle.webp",
     video: "/media/method-bg.mp4",
     videoWebm: "/media/method-bg.webm",
   },
-  stats: [
-    { value: "100+", label: "Implementations delivered" },
-    { value: "98%", label: "Go-live success rate" },
-    { value: "12+", label: "Countries deployed" },
-    { value: "99.6%", label: "SLA adherence" },
-  ],
   sections: [
     {
       id: "challenges",
@@ -118,7 +112,7 @@ export const SAP_CONSULTING = {
         { title: "Business Process Optimization", desc: "Processes redesigned for value before a single screen is configured." },
         { title: "Cloud-First Approach", desc: "Modern, upgrade-safe architectures that lower total cost of ownership." },
         { title: "Global Delivery Capability", desc: "Onsite, offshore and hybrid teams across India, the GCC and Europe." },
-        { title: "Proven Implementation Methodology", desc: "Gated, evidence-based delivery refined over 100+ implementations." },
+        { title: "Proven Implementation Methodology", desc: "Gated, evidence-based delivery refined across complex enterprise programmes." },
         { title: "Long-Term Managed Support", desc: "SLA-backed AMS that protects and compounds your investment after go-live." },
       ],
     },
@@ -192,7 +186,7 @@ export const SAP_CONSULTING = {
         { title: "Support and AMS", desc: "We run what we build — SLA-backed managed services with continuous improvement." },
         { title: "Global delivery", desc: "Follow-the-sun coverage across Asia, Europe and the GCC, aligned to your working week." },
         { title: "Enterprise governance", desc: "Gated delivery, transparent reporting and decision gates your board can trust." },
-        { title: "Long-term partnership", desc: "Relationships measured in years — 98% of clients stay with us beyond go-live." },
+        { title: "Long-term partnership", desc: "Relationships measured in years — our clients stay with us well beyond go-live." },
       ],
     },
   ],
@@ -234,17 +228,11 @@ export const ORACLE_CONSULTING = {
       "Infocure helps organizations accelerate business transformation through Oracle Cloud Applications, ERP, EPM, SCM, HCM and enterprise modernization. We combine business consulting with deep Oracle expertise to deliver scalable, secure and future-ready digital solutions.",
     primaryLabel: "Talk to an Oracle Expert",
     secondaryLabel: "Schedule a Consultation",
-    trustLine: "30+ Fusion deployments · 50+ EBS engagements · 99.6% support SLA adherence",
+    trustLine: "Business-first Oracle expertise · Clean-core modernization · Support that stays after go-live",
     image: "/img-cloud-2.webp",
     video: "/media/method-bg.mp4",
     videoWebm: "/media/method-bg.webm",
   },
-  stats: [
-    { value: "30+", label: "Fusion deployments" },
-    { value: "50+", label: "EBS engagements" },
-    { value: "4", label: "Pillars covered — ERP, HCM, SCM, EPM" },
-    { value: "99.6%", label: "Support SLA adherence" },
-  ],
   sections: [
     {
       id: "challenges",
@@ -436,17 +424,11 @@ export const SALESFORCE_CONSULTING = {
       "Infocure helps organizations maximize customer engagement, streamline sales operations and improve service delivery with Salesforce solutions. From implementation and integration to optimization and managed services, we help businesses unlock the full value of their CRM investment.",
     primaryLabel: "Talk to a Salesforce Expert",
     secondaryLabel: "Request a Consultation",
-    trustLine: "70+ orgs delivered · 45% pipeline visibility gain · 30% sales productivity uplift",
+    trustLine: "Consultants who have run the sales floor · Adoption engineered in · A single customer view",
     image: "/img-business-networks.webp",
     video: "/media/method-bg.mp4",
     videoWebm: "/media/method-bg.webm",
   },
-  stats: [
-    { value: "70+", label: "Salesforce orgs delivered" },
-    { value: "45%", label: "Pipeline visibility gain" },
-    { value: "30%", label: "Sales productivity uplift" },
-    { value: "1", label: "Single customer view" },
-  ],
   sections: [
     {
       id: "challenges",
@@ -589,7 +571,7 @@ export const SALESFORCE_CONSULTING = {
       title: "Why Organizations Choose Infocure for Salesforce",
       kind: "dark",
       items: [
-        { title: "CRM consulting expertise", desc: "Consultants who have delivered 70+ Salesforce orgs lead every engagement." },
+        { title: "CRM consulting expertise", desc: "Consultants who have led complex Salesforce orgs lead every engagement." },
         { title: "Business transformation approach", desc: "We begin with your revenue objectives — the platform follows strategy, never the reverse." },
         { title: "Salesforce implementation experience", desc: "Iterative delivery with sandbox previews — you sign off what you can see, not what you were promised." },
         { title: "Integration capabilities", desc: "Real-time SAP and Oracle connectivity is first-class scope, not an afterthought." },
@@ -638,17 +620,11 @@ export const BUILD_CLOUD = {
       "Infocure helps businesses build modern digital platforms, modernize existing applications, integrate enterprise systems and leverage cloud technologies to create scalable, secure and business-ready technology foundations.",
     primaryLabel: "Talk to a Technology Expert",
     secondaryLabel: "Start a Technology Conversation",
-    trustLine: "200+ applications shipped · 99.6% uptime across managed apps · Code you own outright",
+    trustLine: "Senior engineering teams · Fixed-scope delivery · Code you own outright",
     image: "/img-coding-interface.webp",
     video: "/media/method-bg.mp4",
     videoWebm: "/media/method-bg.webm",
   },
-  stats: [
-    { value: "200+", label: "Applications shipped" },
-    { value: "20+", label: "Technology experts" },
-    { value: "99.9%", label: "Uptime across managed apps" },
-    { value: "100%", label: "Code you own outright" },
-  ],
   sections: [
     {
       id: "challenges",
@@ -866,10 +842,9 @@ export const TEAM_AUGMENTATION = {
     videoWebm: "/media/method-bg.webm",
   },
   stats: [
-    { value: "500+", label: "Consultants deployed" },
-    { value: "3", label: "Engagement models — Onsite, Offshore, Hybrid" },
-    { value: "92%", label: "Engagement renewal rate" },
-    { value: "<5%", label: "Bench acceptance rate" },
+    { value: "300+", label: "Pool of certified consultants" },
+    { value: "500+", label: "Resources deployed" },
+    { value: "85%", label: "Client retention" },
   ],
   sections: [
     {
@@ -1060,16 +1035,10 @@ export const DIGITAL_TRANSFORMATION = {
       "Transform your business with intelligent technology strategies, enterprise applications, cloud modernization, AI, automation and data-driven decision making. Infocure helps organizations modernize operations, improve customer experience and accelerate sustainable business growth through end-to-end digital transformation.",
     primaryLabel: "Schedule a Consultation",
     secondaryLabel: "Talk to an Expert",
-    trustLine: "100+ transformation programs · 12+ industries · 85% client retention",
+    trustLine: "Business-first strategy · Senior-led delivery · Outcomes measured on your P&L",
     image: "/media/dt-hero-poster.jpg",
     video: "/media/dt-hero.mp4",
   },
-  stats: [
-    { value: "100+", label: "Transformation programs" },
-    { value: "12+", label: "Industries transformed" },
-    { value: "85%", label: "Client retention rate" },
-    { value: "3×", label: "Return on transformation spend" },
-  ],
   sections: [
     {
       id: "challenges",

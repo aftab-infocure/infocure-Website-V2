@@ -50,7 +50,6 @@ export const NAV_ABOUT = [
   { name: "Company", href: "/about" },
   { name: "Leadership", href: "/about#leadership" },
   { name: "Careers", href: "/about#careers" },
-  { name: "Contact", href: "/contact" },
 ];
 
 export const REGIONS = [
@@ -58,11 +57,4 @@ export const REGIONS = [
   { code: "AE", label: "UAE & GCC" },
   { code: "EU", label: "Europe" },
   { code: "GLOBAL", label: "Global" },
-];
-
-export const STATS = [
-  { value: 10, suffix: "+", label: "Years of enterprise delivery" },
-  { value: 1000, suffix: "+", label: "Successful engagements" },
-  { value: 12, suffix: "+", label: "Countries served" },
-  { value: 200, suffix: "+", label: "Certified consultants" },
 ];

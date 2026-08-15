@@ -306,7 +306,7 @@ async def list_enquiries():
     return docs
 
 
-# ---------------- Insights (blog) ----------------
+# ---------------- Insights ----------------
 
 class InsightSection(BaseModel):
     h: Optional[str] = None
@@ -323,6 +323,7 @@ class Insight(BaseModel):
     date: str
     read_minutes: int = 5
     image: str = ""
+    pdf_url: str = ""
     status: str = "published"
     seo_title: str = ""
     meta_description: str = ""
@@ -339,6 +340,7 @@ class InsightCreate(BaseModel):
     date: str
     read_minutes: int = 5
     image: str = ""
+    pdf_url: str = ""
     status: str = "published"
     seo_title: str = ""
     meta_description: str = ""
@@ -353,6 +355,7 @@ class InsightUpdate(BaseModel):
     date: Optional[str] = None
     read_minutes: Optional[int] = None
     image: Optional[str] = None
+    pdf_url: Optional[str] = None
     status: Optional[str] = None
     seo_title: Optional[str] = None
     meta_description: Optional[str] = None
@@ -366,8 +369,15 @@ STORAGE_URL = STORAGE_BASE.rstrip("/") + "/objstore/api/v1/storage"
 EMERGENT_KEY = os.environ.get("EMERGENT_LLM_KEY")
 APP_NAME = "infocure"
 _storage_key = None
-ALLOWED_IMAGE_TYPES = {"image/jpeg": "jpg", "image/png": "png", "image/webp": "webp", "image/gif": "gif"}
+ALLOWED_FILE_TYPES = {
+    "image/jpeg": "jpg",
+    "image/png": "png",
+    "image/webp": "webp",
+    "image/gif": "gif",
+    "application/pdf": "pdf",
+}
 MAX_IMAGE_BYTES = 5 * 1024 * 1024
+MAX_PDF_BYTES = 20 * 1024 * 1024
 
 
 def init_storage(force: bool = False):
@@ -414,13 +424,14 @@ def get_object(path: str) -> tuple:
 
 
 @api_router.post("/admin/upload")
-async def upload_image(file: UploadFile = File(...), admin=Depends(admin_guard)):
-    if not file.content_type or file.content_type not in ALLOWED_IMAGE_TYPES:
-        raise HTTPException(status_code=400, detail="Only JPEG, PNG, WebP or GIF images are allowed")
+async def upload_file(file: UploadFile = File(...), admin=Depends(admin_guard)):
+    if not file.content_type or file.content_type not in ALLOWED_FILE_TYPES:
+        raise HTTPException(status_code=400, detail="Only JPEG, PNG, WebP, GIF images or PDF documents are allowed")
     data = await file.read()
-    if len(data) > MAX_IMAGE_BYTES:
-        raise HTTPException(status_code=400, detail="Image must be under 5MB")
-    ext = ALLOWED_IMAGE_TYPES[file.content_type]
+    limit = MAX_PDF_BYTES if file.content_type == "application/pdf" else MAX_IMAGE_BYTES
+    if len(data) > limit:
+        raise HTTPException(status_code=400, detail="Images must be under 5MB, PDFs under 20MB")
+    ext = ALLOWED_FILE_TYPES[file.content_type]
     path = f"{APP_NAME}/uploads/{uuid.uuid4()}.{ext}"
     result = await asyncio.to_thread(put_object, path, data, file.content_type)
     record = {
@@ -458,7 +469,7 @@ SEED_INSIGHTS = [
     {
         "slug": "cfo-guide-s4hana-migration",
         "title": "The CFO's guide to an S/4HANA migration that finishes on time",
-        "excerpt": "Why 70% of S/4HANA programmes overrun, and the four governance moves that keep the rest on plan.",
+        "excerpt": "Why so many S/4HANA programmes drift off plan, and the four governance moves that keep the rest on track.",
         "category": "Executive Guide",
         "date": "May 2026",
         "read_minutes": 7,
@@ -510,13 +521,13 @@ SEED_INSIGHTS = [
 ]
 
 
-SEED_BLOG = [
+SEED_ARTICLES_EXTRA = [
     {
         "slug": "why-fit-to-standard-beats-customization",
         "title": "Why fit-to-standard beats customization for growing businesses",
         "excerpt": "Every customization is a future upgrade cost. Here is when to standardize and when to extend.",
         "category": "SAP",
-        "type": "blog",
+        "type": "article",
         "date": "May 2026",
         "read_minutes": 4,
         "image": "https://images.pexels.com/photos/3183153/pexels-photo-3183153.jpeg?auto=compress&cs=tinysrgb&w=1600",
@@ -531,7 +542,7 @@ SEED_BLOG = [
         "title": "ERP and AI: what actually changes for operators in 2026",
         "excerpt": "AI copilots are arriving inside ERP. The winners will be the businesses with clean, governed data.",
         "category": "AI",
-        "type": "blog",
+        "type": "article",
         "date": "April 2026",
         "read_minutes": 5,
         "image": "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1600",
@@ -546,7 +557,7 @@ SEED_BLOG = [
         "title": "Cloud migration without the drama: a pragmatic checklist",
         "excerpt": "Moving core workloads to the cloud is routine now — if you sequence it around business risk.",
         "category": "Cloud",
-        "type": "blog",
+        "type": "article",
         "date": "March 2026",
         "read_minutes": 4,
         "image": "https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&w=1600",
@@ -566,18 +577,14 @@ async def seed_insights():
         logger.info("Object storage initialized")
     except Exception as e:
         logger.error(f"Storage init failed: {e}")
-    if await db.insights.count_documents({"type": {"$ne": "blog"}}) == 0:
-        for item in SEED_INSIGHTS:
+    # One-time migration: former blog posts are now articles
+    await db.insights.update_many({"type": "blog"}, {"$set": {"type": "article"}})
+    if await db.insights.count_documents({}) == 0:
+        for item in SEED_INSIGHTS + SEED_ARTICLES_EXTRA:
             doc = Insight(**item).model_dump()
             doc["created_at"] = doc["created_at"].isoformat()
             await db.insights.insert_one(doc)
-        logger.info("Seeded %d articles", len(SEED_INSIGHTS))
-    if await db.insights.count_documents({"type": "blog"}) == 0:
-        for item in SEED_BLOG:
-            doc = Insight(**item).model_dump()
-            doc["created_at"] = doc["created_at"].isoformat()
-            await db.insights.insert_one(doc)
-        logger.info("Seeded %d blog posts", len(SEED_BLOG))
+        logger.info("Seeded %d articles", len(SEED_INSIGHTS) + len(SEED_ARTICLES_EXTRA))
 
 
 def _serialize_insight(doc):

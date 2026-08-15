@@ -13,11 +13,6 @@ export const PRODUCTS = [
     },
     heroPrimary: "Talk to a CRM Expert",
     heroSecondary: "Request a Demo",
-    stats: [
-      { value: 1, suffix: "", label: "Connected view of every customer" },
-      { value: 7, suffix: "", label: "Lifecycle stages, fully visible" },
-      { value: 5, suffix: "+", label: "Lead channels captured — Web, email, WhatsApp, Phone, other media" },
-    ],
     stack: ["ERP integration", "Website & WhatsApp lead capture", "Open APIs", "Role-based access", "Mobile-ready"],
     sections: [
       {
@@ -248,11 +243,6 @@ export const PRODUCTS = [
     },
     heroPrimary: "Request an ERP Demo",
     heroSecondary: "Talk to an ERP Expert",
-    stats: [
-      { value: 6, suffix: "", label: "Core functions unified — finance to HR" },
-      { value: 1, suffix: "", label: "Single source of truth" },
-      { value: "SAP", suffix: "", label: "Interoperable enterprise positioning" },
-    ],
     stack: ["Single database", "Workflow engine", "Role-based access", "Open APIs", "Audit trails"],
     sections: [
       {
@@ -464,11 +454,6 @@ export const PRODUCTS = [
     },
     heroPrimary: "Request an HRMS Demo",
     heroSecondary: "Talk to an HR Expert",
-    stats: [
-      { value: 6, suffix: "", label: "Employee lifecycle stages, managed" },
-      { value: 1, suffix: "", label: "Connected platform for the workforce" },
-      { value: 100, suffix: "%", label: "Statutory-ready payroll processes" },
-    ],
     stack: ["Cloud-native", "Mobile app", "Biometric integrations", "ERP payroll sync", "Audit trails"],
     sections: [
       {
@@ -707,11 +692,6 @@ export const PRODUCTS = [
     },
     heroPrimary: "Request a DMS Demo",
     heroSecondary: "Talk to an Expert",
-    stats: [
-      { value: 8, suffix: "", label: "Dealer lifecycle stages, managed" },
-      { value: 1, suffix: "", label: "Connected platform for the channel" },
-      { value: 2, suffix: "", label: "Sides served — principals and dealers" },
-    ],
     stack: ["Mobile dealer app", "ERP sync", "Offline capable", "Multi-tier networks", "Scheme engine"],
     sections: [
       {
@@ -970,11 +950,6 @@ export const PRODUCTS = [
     },
     heroPrimary: "Talk to an OMS Expert",
     heroSecondary: "Request a Demo",
-    stats: [
-      { value: 8, suffix: "", label: "Lifecycle stages, fully traceable" },
-      { value: 4, suffix: "+", label: "Order channels consolidated" },
-      { value: 1, suffix: "", label: "Single view of every order" },
-    ],
     stack: ["ERP & WMS connectors", "EDI ready", "Carrier APIs", "Real-time tracking", "Exception workflows"],
     sections: [
       {
@@ -1212,11 +1187,6 @@ export const PRODUCTS = [
     },
     heroPrimary: "Request a Demo",
     heroSecondary: "Talk to a Manufacturing Expert",
-    stats: [
-      { value: 8, suffix: "", label: "Production lifecycle stages, connected" },
-      { value: 1, suffix: "", label: "View of plan and execution" },
-      { value: "SAP", suffix: "", label: "Designed for SAP environments" },
-    ],
     stack: ["Finite scheduling", "What-if simulation", "MES connectors", "Andon alerts", "Gantt visuals"],
     sections: [
       {
@@ -1469,11 +1439,6 @@ export const PRODUCTS = [
     },
     heroPrimary: "Request an EXIM Demo",
     heroSecondary: "Talk to an EXIM Expert",
-    stats: [
-      { value: 2, suffix: "", label: "Trade directions — import & export, one platform" },
-      { value: "DGFT", suffix: "", label: "Connected trade processes" },
-      { value: 1, suffix: "", label: "Consolidated view of every transaction" },
-    ],
     stack: ["DGFT integrations", "Multi-currency", "ERP sync", "Document vault", "e-BRC tracking"],
     sections: [
       {
@@ -1760,11 +1725,6 @@ export const PRODUCTS = [
     },
     heroPrimary: "Request a Demo",
     heroSecondary: "Talk to an Expert",
-    stats: [
-      { value: "24/7", suffix: "", label: "Live fleet visibility" },
-      { value: 1, suffix: "", label: "Consolidated fleet view" },
-      { value: "AIS-140", suffix: "", label: "Ready hardware standard" },
-    ],
     stack: ["GPS + CAN bus", "Fuel sensors", "Mobile apps", "API/webhooks", "AIS-140 ready"],
     sections: [
       {
@@ -2047,11 +2007,6 @@ export const PRODUCTS = [
     },
     heroPrimary: "Request a Demo",
     heroSecondary: "Talk to an Expert",
-    stats: [
-      { value: 8, suffix: "", label: "Lifecycle stages, monitored" },
-      { value: 1, suffix: "", label: "Cockpit for every invoice transaction" },
-      { value: "IRP", suffix: "", label: "Submission built into the workflow" },
-    ],
     stack: ["IRP certified", "SAP/Oracle/Tally", "Bulk APIs", "Failover IRPs", "Audit vault"],
     sections: [
       {

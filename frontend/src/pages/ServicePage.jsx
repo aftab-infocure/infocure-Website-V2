@@ -2,7 +2,7 @@ import { useParams, useLocation, Link, Navigate } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import SEO from "@/components/site/SEO";
 import { Reveal } from "@/components/ref/motion";
-import { FeatureGrid, StatBand, FAQAccordion, CTABand } from "@/components/ref/sections";
+import { FeatureGrid, FAQAccordion, CTABand } from "@/components/ref/sections";
 import { ThemedVisual } from "@/components/ref/visuals";
 import Hero from "@/components/ref/Hero";
 import { getService } from "@/data/services";
@@ -45,15 +45,13 @@ export default function ServicePage() {
         subhead={service.heroCopy}
         primaryCta={{ label: "Discuss your project", href: "/contact" }}
         secondaryCta={{ label: service.related[0].name, href: service.related[0].href }}
-        trustLine="11+ years · 200+ enterprise engagements · Senior-led delivery"
+        trustLine="Senior-led delivery · Fixed-scope engagements · Enterprise-grade governance"
         video="/media/method-bg.mp4"
         videoWebm="/media/method-bg.webm"
         videoPoster="/media/method-bg.jpg"
         visual={visual ? <ThemedVisual center={visual.center} nodes={visual.nodes} caption={service.title} /> : undefined}
         image={service.image}
       />
-
-      <StatBand items={service.stats.map((s) => ({ value: `${s.value}${s.suffix}`, label: s.label }))} />
 
       <Reveal>
         <FeatureGrid
@@ -77,14 +75,6 @@ export default function ServicePage() {
               <p className="mt-6 max-w-lg font-body text-[16px] leading-relaxed text-white/70">
                 A proven, gated delivery path. Each phase closes with evidence — not promises — before the next begins.
               </p>
-              <div className="mt-10 grid grid-cols-2 gap-6">
-                {service.outcomes.map((o) => (
-                  <div key={o.label} className="border-l-2 border-brand-red pl-4">
-                    <div className="font-mono text-[28px] font-semibold leading-none text-brand-red">{o.value}{o.suffix}</div>
-                    <div className="mt-2 font-body text-[12.5px] leading-snug text-white/65">{o.label}</div>
-                  </div>
-                ))}
-              </div>
             </Reveal>
             <ol className="grid gap-4">
               {service.process.map((s, i) => (

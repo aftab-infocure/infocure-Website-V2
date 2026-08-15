@@ -7,11 +7,6 @@ export const SAP_SERVICES = [
     heroCopy: "Strategy-first SAP advisory that aligns your technology estate with where the business is actually going — before budgets are committed.",
     seo: { title: "SAP Consultation & Advisory Services", description: "Strategy-first SAP advisory: landscape assessment, S/4HANA roadmaps, licensing optimization and business case design for enterprises." },
     image: "/img-strategic-value.webp",
-    stats: [
-      { value: 150, suffix: "+", label: "Advisory engagements" },
-      { value: 40, suffix: "%", label: "Avg. licensing cost saved" },
-      { value: 12, suffix: "+", label: "Industries advised" },
-    ],
     capabilities: [
       { title: "Landscape & Maturity Assessment", desc: "A forensic view of your current SAP estate — customizations, technical debt, integration health and upgrade readiness." },
       { title: "S/4HANA Roadmap Design", desc: "Brownfield, greenfield or bluefield — we model every path with cost, risk and value timelines so leadership can decide with evidence." },
@@ -25,12 +20,6 @@ export const SAP_SERVICES = [
       { title: "Assess", desc: "Gap analysis against business strategy, with quantified risk and opportunity sizing." },
       { title: "Recommend", desc: "A decision-grade roadmap with options, costs, and sequenced value delivery." },
       { title: "Mobilize", desc: "Governance, partner selection support and program setup for execution." },
-    ],
-    outcomes: [
-      { value: 30, suffix: "%", label: "Lower transformation risk" },
-      { value: 6, suffix: " wks", label: "Typical assessment cycle" },
-      { value: 3, suffix: "×", label: "Faster decision-making" },
-      { value: 100, suffix: "%", label: "Independent & vendor-neutral" },
     ],
     faqs: [
       { q: "When should we engage an SAP advisor?", a: "Ideally 6–12 months before a major contract renewal, S/4HANA decision or ERP program kickoff — early advisory consistently reduces total program cost." },
@@ -49,13 +38,8 @@ export const SAP_SERVICES = [
     title: "SAP Implementation",
     tagline: "Enterprise rollouts that land on time, on budget, on value.",
     heroCopy: "Full-lifecycle SAP implementation — from blueprint to go-live — delivered by consultants who have done it hundreds of times across industries.",
-    seo: { title: "SAP Implementation Services", description: "End-to-end SAP implementation: ECC, S/4HANA greenfield and brownfield projects delivered with proven methodology across 12+ countries." },
+    seo: { title: "SAP Implementation Services", description: "End-to-end SAP implementation: ECC, S/4HANA greenfield and brownfield projects delivered with a proven, senior-led methodology." },
     image: "/img-sap-oracle.webp",
-    stats: [
-      { value: 300, suffix: "+", label: "Implementations delivered" },
-      { value: 98, suffix: "%", label: "Go-live success rate" },
-      { value: 12, suffix: "+", label: "Countries deployed" },
-    ],
     capabilities: [
       { title: "Greenfield S/4HANA", desc: "Clean-core implementations using SAP Activate, fit-to-standard workshops and model company accelerators." },
       { title: "Brownfield Conversion", desc: "System conversion from ECC to S/4HANA with custom code remediation and minimal business disruption." },
@@ -70,12 +54,6 @@ export const SAP_SERVICES = [
       { title: "Realize", desc: "Configuration, development, integration and iterative testing cycles." },
       { title: "Deploy", desc: "Cutover rehearsal, go-live execution and hypercare stabilization." },
       { title: "Run", desc: "Continuous improvement backlog and transition to AMS." },
-    ],
-    outcomes: [
-      { value: 20, suffix: "%", label: "Faster close cycles" },
-      { value: 35, suffix: "%", label: "Process automation gains" },
-      { value: 99.9, suffix: "%", label: "Post-go-live availability", decimals: 1 },
-      { value: 0, suffix: "", label: "Failed go-lives in a decade" },
     ],
     faqs: [
       { q: "How long does an S/4HANA implementation take?", a: "Mid-market deployments typically run 6–9 months; complex multi-entity programs 12–18 months. Our accelerators compress timelines without cutting corners." },
@@ -96,11 +74,6 @@ export const SAP_SERVICES = [
     heroCopy: "Database and platform migrations engineered for zero-surprise cutovers — OS/DB moves, Suite on HANA, and S/4HANA conversions at enterprise scale.",
     seo: { title: "SAP HANA Migration Services", description: "Zero-disruption SAP HANA migration: OS/DB migration, Suite on HANA, and S/4HANA conversion with downtime minimization." },
     image: "/img-server.webp",
-    stats: [
-      { value: 120, suffix: "+", label: "Migrations completed" },
-      { value: 8, suffix: " hrs", label: "Median cutover downtime" },
-      { value: 60, suffix: "%", label: "Typical TCO reduction" },
-    ],
     capabilities: [
       { title: "DMO & System Conversion", desc: "Database Migration Option with SUM for combined upgrade and migration in a single downtime window." },
       { title: "Downtime Optimization", desc: "Near-zero downtime (NZDT) techniques, delta cloning and rehearsal cycles that de-risk cutover weekend." },
@@ -115,12 +88,6 @@ export const SAP_SERVICES = [
       { title: "Optimization", desc: "Custom code remediation and downtime refinement." },
       { title: "Production Cutover", desc: "Scripted execution with war-room monitoring." },
       { title: "Validate & Handover", desc: "Performance validation, documentation and operations handover." },
-    ],
-    outcomes: [
-      { value: 10, suffix: "×", label: "Faster reporting on HANA" },
-      { value: 50, suffix: "%", label: "Smaller database footprint" },
-      { value: 100, suffix: "%", label: "Successful cutovers" },
-      { value: 4, suffix: " wks", label: "Typical sandbox-to-plan cycle" },
     ],
     faqs: [
       { q: "How much downtime should we expect?", a: "With downtime-optimized DMO and rehearsal cycles, most production cutovers complete within a single weekend window — often under 12 hours." },
@@ -141,15 +108,10 @@ export const SAP_SERVICES = [
     heroCopy: "Version upgrades for HANA and S/4HANA that keep your estate supported, secure and performing — without freezing the business.",
     seo: { title: "SAP HANA Upgrade Services", description: "SAP HANA and S/4HANA version upgrades with minimal downtime — stay supported, secure and high-performing." },
     image: "/img-cloud-1.webp",
-    stats: [
-      { value: 200, suffix: "+", label: "Upgrades delivered" },
-      { value: 72, suffix: " hrs", label: "Typical end-to-end window" },
-      { value: 0, suffix: "", label: "Data loss events, ever" },
-    ],
     capabilities: [
       { title: "S/4HANA Release Upgrades", desc: "Feature-pack and release upgrades with simplification-item management and regression automation." },
       { title: "HANA Platform Upgrades", desc: "HANA 1.0 to 2.0, revision updates and scale-out reconfigurations executed with precision." },
-      { title: "Regression Test Automation", desc: "Automated business process testing that cuts manual validation effort by up to 70%." },
+      { title: "Regression Test Automation", desc: "Automated business process testing that sharply reduces manual validation effort." },
       { title: "Add-on & Fiori Compatibility", desc: "Third-party add-on validation and Fiori/UI5 upgrades handled as first-class scope." },
       { title: "Shadow System Strategy", desc: "Clone-based upgrade rehearsals so production issues surface in the lab, never in live." },
       { title: "Post-Upgrade Tuning", desc: "SQL plan analysis and parameter optimization to capture the performance you paid for." },
@@ -160,12 +122,6 @@ export const SAP_SERVICES = [
       { title: "Test", desc: "Automated regression, integration and performance validation." },
       { title: "Execute", desc: "Production upgrade in a controlled, monitored window." },
       { title: "Stabilize", desc: "Hypercare, tuning and knowledge transfer to operations." },
-    ],
-    outcomes: [
-      { value: 70, suffix: "%", label: "Less manual test effort" },
-      { value: 100, suffix: "%", label: "Support compliance restored" },
-      { value: 25, suffix: "%", label: "Avg. performance uplift" },
-      { value: 2, suffix: "×", label: "Faster than in-house teams" },
     ],
     faqs: [
       { q: "How often should we upgrade S/4HANA?", a: "We recommend staying within two releases of current. Our release strategy workshop maps the cadence that fits your change appetite." },
@@ -186,11 +142,6 @@ export const SAP_SERVICES = [
     heroCopy: "CPI, PI/PO, API-led and event-driven integration architecture that connects SAP to everything — cloud apps, partners, machines and marketplaces.",
     seo: { title: "SAP Integration Services", description: "SAP integration architecture: CPI, PI/PO, API management and event-driven integration connecting SAP with your entire enterprise estate." },
     image: "/img-business-networks.webp",
-    stats: [
-      { value: 500, suffix: "+", label: "Interfaces engineered" },
-      { value: 99.9, suffix: "%", label: "Interface reliability", decimals: 1 },
-      { value: 50, suffix: "+", label: "Third-party platforms connected" },
-    ],
     capabilities: [
       { title: "SAP Integration Suite / CPI", desc: "Cloud-native iFlows, pre-packaged content and API-led connectivity for hybrid landscapes." },
       { title: "PI/PO Modernization", desc: "Structured migration from Process Orchestration to Integration Suite ahead of the 2027 support horizon." },
@@ -205,12 +156,6 @@ export const SAP_SERVICES = [
       { title: "Build", desc: "Iterative interface delivery with automated testing." },
       { title: "Cutover", desc: "Parallel-run validation and sequenced go-live." },
       { title: "Operate", desc: "Monitoring, SLA-backed support and continuous optimization." },
-    ],
-    outcomes: [
-      { value: 60, suffix: "%", label: "Faster partner onboarding" },
-      { value: 80, suffix: "%", label: "Fewer manual reconciliations" },
-      { value: 24, suffix: "/7", label: "Interface observability" },
-      { value: 40, suffix: "%", label: "Lower integration run-cost" },
     ],
     faqs: [
       { q: "Should we move from PI/PO to Integration Suite?", a: "Yes — mainstream maintenance for PI/PO ends in 2027. We run structured migrations that preserve your interface investments." },
@@ -231,11 +176,6 @@ export const SAP_SERVICES = [
     heroCopy: "SLA-driven AMS with proactive monitoring, continuous improvement and a named team that knows your landscape like their own.",
     seo: { title: "SAP AMS — Application Management & Support", description: "SLA-driven SAP AMS: 24/7 monitoring, incident management, continuous improvement and Basis administration by certified consultants." },
     image: "/img-platform-analytics.webp",
-    stats: [
-      { value: 99.9, suffix: "%", label: "SLA adherence", decimals: 1 },
-      { value: 24, suffix: "/7", label: "Global support coverage" },
-      { value: 35, suffix: "%", label: "Avg. ticket volume reduction" },
-    ],
     capabilities: [
       { title: "Incident & Problem Management", desc: "ITIL-aligned L1–L3 support with root-cause elimination, not ticket shuffling." },
       { title: "SAP Basis Administration", desc: "Performance, security patching, transport management and landscape operations handled end to end." },
@@ -249,12 +189,6 @@ export const SAP_SERVICES = [
       { title: "Stabilize", desc: "Baseline SLAs, fix systemic issues, deploy monitoring." },
       { title: "Optimize", desc: "Ticket analytics drive root-cause elimination and automation." },
       { title: "Evolve", desc: "Quarterly value reviews and improvement roadmap execution." },
-    ],
-    outcomes: [
-      { value: 45, suffix: "%", label: "Lower cost-to-serve vs in-house" },
-      { value: 15, suffix: " min", label: "P1 response time" },
-      { value: 90, suffix: "%", label: "First-contact resolution" },
-      { value: 100, suffix: "%", label: "Transparent SLA reporting" },
     ],
     faqs: [
       { q: "How does transition from our current provider work?", a: "A structured 4–6 week takeover: documentation, shadowing, credential transfer and parallel run — with zero support gap." },
@@ -275,11 +209,6 @@ export const SAP_SERVICES = [
     heroCopy: "Deep technical and functional audits that surface hidden cost, risk and performance debt across your SAP estate — with a prioritized fix plan.",
     seo: { title: "SAP System Audit & Optimization", description: "Independent SAP system audits: performance, security, licensing and process optimization with prioritized remediation roadmaps." },
     image: "/img-business-analytics.webp",
-    stats: [
-      { value: 200, suffix: "+", label: "Systems audited" },
-      { value: 22, suffix: "%", label: "Avg. infra cost recovered" },
-      { value: 10, suffix: " days", label: "Standard audit cycle" },
-    ],
     capabilities: [
       { title: "Performance Audit", desc: "Workload analysis, expensive SQL, memory and I/O profiling with quantified tuning recommendations." },
       { title: "Security & Authorization Review", desc: "SoD conflicts, critical access, patching posture and audit-trail completeness." },
@@ -290,15 +219,9 @@ export const SAP_SERVICES = [
     ],
     process: [
       { title: "Baseline", desc: "Automated data collection across performance, security and usage dimensions." },
-      { title: "Analyze", desc: "Expert review against benchmarks from 200+ comparable systems." },
+      { title: "Analyze", desc: "Expert review against benchmarks from comparable enterprise systems." },
       { title: "Prioritize", desc: "Findings scored by business impact and remediation effort." },
       { title: "Remediate", desc: "Optional fixed-scope execution of the highest-value fixes." },
-    ],
-    outcomes: [
-      { value: 40, suffix: "%", label: "Faster batch windows" },
-      { value: 30, suffix: "%", label: "Security exposure reduced" },
-      { value: 25, suffix: "%", label: "License spend recovered" },
-      { value: 100, suffix: "%", label: "Actionable, priced findings" },
     ],
     faqs: [
       { q: "Is the audit disruptive to operations?", a: "No — data collection uses read-only, standard SAP tooling. Users notice nothing." },
