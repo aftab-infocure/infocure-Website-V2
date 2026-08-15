@@ -423,6 +423,76 @@ def get_object(path: str) -> tuple:
     return resp.content, resp.headers.get("Content-Type", "application/octet-stream")
 
 
+# ---------------- PDF brand stamping ----------------
+# Every PDF uploaded through the CMS is stamped with the Infocure brand:
+# logo icon + "infocure technologies" wordmark (all lowercase, "cure" in red)
+# in the header of page 1 and the footer of every page.
+
+BRAND_LOGO_PATH = os.path.join(os.path.dirname(__file__), "assets", "logo-mark.png")
+
+
+def _brand_overlay(width: float, height: float, first_page: bool):
+    import io
+    from reportlab.pdfgen import canvas as _canvas
+    from reportlab.lib.colors import HexColor
+    from reportlab.lib.units import mm
+
+    buf = io.BytesIO()
+    c = _canvas.Canvas(buf, pagesize=(width, height))
+    ink = HexColor("#141414")
+    red = HexColor("#D6182B")
+    slate = HexColor("#5A6472")
+
+    def wordmark(x, y, scale=1.0):
+        icon = 6.5 * mm * scale
+        c.drawImage(BRAND_LOGO_PATH, x, y - 1.6 * mm * scale, width=icon, height=icon)
+        tx = x + icon + 2.2 * mm * scale
+        f, size = "Helvetica-Bold", 10.5 * scale
+        c.setFont(f, size)
+        c.setFillColor(ink)
+        c.drawString(tx, y, "info")
+        tx += c.stringWidth("info", f, size)
+        c.setFillColor(red)
+        c.drawString(tx, y, "cure")
+        tx += c.stringWidth("cure", f, size)
+        c.setFont("Helvetica", 6.5 * scale)
+        c.setFillColor(slate)
+        c.drawString(tx + 1.6 * mm * scale, y + 0.3 * mm * scale, "technologies")
+
+    if first_page:
+        wordmark(14 * mm, height - 16 * mm, scale=1.1)
+    # footer on every page
+    wordmark(14 * mm, 9 * mm, scale=0.75)
+    c.setFont("Helvetica", 6.5)
+    c.setFillColor(slate)
+    c.drawRightString(width - 14 * mm, 9 * mm, "infocure.in")
+    c.save()
+    buf.seek(0)
+    return buf
+
+
+def stamp_pdf(data: bytes) -> bytes:
+    """Overlay Infocure branding onto an uploaded PDF. Returns original bytes on any failure."""
+    import io
+    try:
+        from pypdf import PdfReader, PdfWriter
+
+        reader = PdfReader(io.BytesIO(data))
+        writer = PdfWriter()
+        for i, page in enumerate(reader.pages):
+            w = float(page.mediabox.width)
+            h = float(page.mediabox.height)
+            overlay = PdfReader(_brand_overlay(w, h, first_page=(i == 0)))
+            page.merge_page(overlay.pages[0])
+            writer.add_page(page)
+        out = io.BytesIO()
+        writer.write(out)
+        return out.getvalue()
+    except Exception as e:
+        logger.error(f"PDF stamping failed, storing original: {e}")
+        return data
+
+
 @api_router.post("/admin/upload")
 async def upload_file(file: UploadFile = File(...), admin=Depends(admin_guard)):
     if not file.content_type or file.content_type not in ALLOWED_FILE_TYPES:
@@ -432,6 +502,8 @@ async def upload_file(file: UploadFile = File(...), admin=Depends(admin_guard)):
     if len(data) > limit:
         raise HTTPException(status_code=400, detail="Images must be under 5MB, PDFs under 20MB")
     ext = ALLOWED_FILE_TYPES[file.content_type]
+    if file.content_type == "application/pdf":
+        data = stamp_pdf(data)
     path = f"{APP_NAME}/uploads/{uuid.uuid4()}.{ext}"
     result = await asyncio.to_thread(put_object, path, data, file.content_type)
     record = {

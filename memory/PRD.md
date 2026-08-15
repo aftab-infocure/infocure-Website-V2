@@ -90,6 +90,8 @@ Remaining: none blocking. Homepage & Digital Transformation untouched.
   - ABOUT PAGE premium rebuild: dark kinetic hero (masked line-by-line reveal, parallax glows), slow editorial marquee, 5 numbered manifesto chapters (01 Journey → 05 Careers), #leadership/#careers anchors preserved; content unchanged otherwise.
   - Verified by testing agent (iteration_3): all items pass after HomeHero fix; legacy pages render clean; CMS login + PDF upload flow verified end-to-end via curl.
 
+- 2026-08-15: PDF BRAND STAMPING — all 6 Resources PDFs regenerated with the Infocure logo icon + lowercase "infocure technologies" wordmark ("cure" in red) on cover + body pages. FUTURE uploads: backend now auto-stamps every CMS-uploaded PDF (pypdf + reportlab overlay) — page-1 header wordmark + footer wordmark with infocure.in on every page; falls back to original file if stamping fails. Logo asset at /app/backend/assets/logo-mark.png. Verified via upload of plain PDF → downloaded stamped copy analyzed (logo + wordmark + footer confirmed).
+
 ## Backlog / Next
 - P1: Server-side 301 for /services/team-augmentation if SEO demands it (currently client-side redirect).
 - P2: Admin-editable flagship page content.
